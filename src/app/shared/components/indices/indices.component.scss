@@ -1,0 +1,100 @@
+@import '/src/assets/styles/variables.scss';
+
+.oca {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.index-card {
+    border: 2px solid #ccc;
+    border-radius: 15px !important;
+    box-shadow: none;
+}
+
+.symbol-section {
+    display: flex;
+    padding: 10px !important;
+
+    .symbol-icon {
+        width: 60px;
+        position: relative;
+        top: 3px;
+        
+        .icon-list {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            position: relative;
+
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: $font-family-bold;
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .symbol-content {
+        width: auto;
+        padding-right: 30px;
+
+        .symbol-name {
+            font-size: 16px;
+            color: $text-color-light;
+            font-family: $font-family-bold;
+        }
+
+        .current-value {
+            margin-bottom: 0px;
+
+            .current-percentage {
+                position: relative;
+                font-size: 15px;
+                font-family: $font-family-semibold;
+                left: 10px;
+                top: -1px;
+            }
+        }
+    }
+}
+
+.active {
+    border: 2px solid $primary-color !important;
+    background-color: $sidebar-color;
+    transition: .3s;
+    cursor: pointer;
+
+    .symbol-section { 
+        .symbol-icon { 
+            .icon-list { 
+                background-color: $primary-color;
+                .icon {
+                    color: $white-bg;
+                }   
+            }
+        }
+    }
+}
+
+.index-card:hover {
+    border: 2px solid $sidebar-color !important;
+    background-color: $sidebar-color;
+    transition: .3s;
+    cursor: pointer;
+
+    .symbol-section { 
+        .symbol-icon { 
+            .icon-list { 
+                background-color: $white-bg;
+                .icon {
+                    color: $text-color;
+                }
+            }
+        }
+    }
+}

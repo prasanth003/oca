@@ -1,0 +1,81 @@
+<div class="daashboard-layout" [style.height]="availableHeight + 'px'">
+
+    <div class="left-content">
+
+        <div class="d-flex align-items-center mb-2">
+            <div>
+                <select-index></select-index>
+            </div>
+            <div class="ms-auto">
+                <interval-selector (onChange)="onIntervalChange($event)"></interval-selector>
+                <span class="date-picker">
+                    <date-picker (onDateChange)="onDateChange($event)"></date-picker>
+                </span>
+            </div>
+        </div>
+            
+
+        <time-slider (onTimeChange)="onTimeChange($event)"></time-slider>
+
+        
+        <current-trend [sentiments]="sentiments" [newRecord]="newSentiment"></current-trend>
+
+        <div class="summary">
+            
+            <h5>Market Summary</h5>
+
+            <div class="row gt">
+                <div class="col-md-3">
+                    <market-sentiment [sentiments]="sentiments" [newRecord]="newSentiment"></market-sentiment>
+                </div>
+            </div>
+
+            <!-- 
+            <div style="height: 200px;">
+                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue"  [options]="options"></ngx-slider>
+            </div> -->
+
+            <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio excepturi amet incidunt quae corporis voluptatum iure sunt! Temporibus eaque libero inventore. Natus eum facilis molestiae velit quis sit eos accusamus. -->
+
+        </div>
+
+    </div>
+
+    <div class="right-content">
+        <pc-change [sentiments]="sentiments" [newRecord]="newSentiment"></pc-change>
+    </div>
+
+</div>
+
+
+<!-- <div class="row g-2">
+    
+    <div class="col-md-9">
+
+        <div class="row g-2">
+            
+            <div class="col-md-12">
+                <current-trend [sentiments]="sentiments" [newRecord]="newSentiment"></current-trend>
+            </div>
+
+            <div class="col-md-3">
+                <market-sentiment></market-sentiment>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <pc-change [sentiments]="sentiments" [newRecord]="newSentiment"></pc-change>
+    </div>
+
+</div> -->

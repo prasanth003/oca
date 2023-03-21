@@ -1,0 +1,19 @@
+@import '/src/assets/styles/variables.scss';
+
+.title {
+    margin-bottom: 10px;
+}
+
+.section {
+    padding-top: 20px;
+    overflow-y: auto;
+
+    .pc-sec {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .pc-sec:last-child {
+        border-bottom: none;
+    }
+}

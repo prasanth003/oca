@@ -1,0 +1,14 @@
+.datepicker-input {
+    padding: 0;
+    margin: 0;
+    border: none;
+    height: 0;
+    width: 0;
+}
+
+::ng-deep {
+    .mat-mdc-icon-button svg {
+        position: relative;
+        top: -3px;
+    }
+}

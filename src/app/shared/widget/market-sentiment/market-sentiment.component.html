@@ -1,0 +1,65 @@
+<mat-card class="oca-card">
+    <mat-card-header>
+        <mat-card-title class="title">Sentiment</mat-card-title>
+      </mat-card-header>
+    <mat-card-content class="section">
+        
+        <h5>80% Strong Buy</h5>
+        
+        <button mat-icon-button class="fab-button" (click)="switchToGauge()" [matTooltip]="gauge ? 'Switch to trend': 'Switch to gauge chart'">
+            <mat-icon> pie_chart</mat-icon>
+        </button>
+
+        <div [hidden]="gauge">
+            <div class="sentiment-section mb-2">
+                <div class="border up"></div>
+                
+                <div class="sentiment-content">
+                    <p class="sentiment-text">Buy</p>
+                    <h2 class="sentiment-count">80%</h2>
+                    <div class="tag bg-light-green">
+                        + 20%
+                        <mat-icon class="market-up market-status">play_arrow</mat-icon>
+                    </div>
+                </div>
+                
+                <div class="graph">
+                    <div #buytrend></div>
+                </div>
+    
+            </div>
+    
+            <div class="sentiment-section">
+                <div class="border down"></div>
+                
+                <div class="sentiment-content">
+                    <p class="sentiment-text">Sell</p>
+                    <h2 class="sentiment-count">20%</h2>
+                    <div class="tag bg-light-red">
+                        - 10%
+                        <mat-icon class="market-down market-status">play_arrow</mat-icon>
+                    </div>
+                </div>
+    
+                <div class="graph">
+                    <div #selltrend></div>
+                </div>
+    
+            </div>
+        </div>
+
+        <div [hidden]="!gauge">
+            <div 
+                #echart 
+                echarts 
+                [options]="chartOptions" 
+                [autoResize]="true"
+                [style.height]="200 + 'px'"
+                (chartInit)="onChartInit($event)"
+          ></div>
+        </div>
+
+        <p class="description">Based on 80% interest on buy side.</p>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,75 @@
+@import '/src/assets/styles/variables.scss';
+
+.pc-content {
+    display: flex;
+    .graph-section {
+        width: 100px;
+    }
+
+    .content-section {
+        width: 100%;
+        padding-left: 0px;
+        position: relative;
+
+        .scope-title {
+            font-weight: 500;
+            font-size: 14px;
+            font-family: $font-family-medium;
+            margin-bottom: 0px;
+
+            .amount {
+                font-family: $font-family-semibold;
+            }
+
+            .sentiment {
+                position: relative;
+                left: 5px;
+            }
+        }
+
+        .fab-time {
+            position: absolute;
+            right: 0;
+            font-size: 12px;
+            font-family: $font-family-bold;
+            top: 0;
+            font-weight: 900;
+        }
+
+        .pc-compare {
+            width: 100%;
+            display: flex;
+            margin-top: 5px;
+
+            .pc-section {
+                flex: 1;
+
+                .pc-type {
+                    font-size: 14px;
+                    font-family: $font-family-bold;
+                }
+
+                .pc-price {
+                    padding: 2px 5px;
+                    font-size: 13px;
+                    font-family: $font-family-regular;
+                    border-radius: 4px;
+                    position: relative;
+                    left: 8px;
+                    top: -1px;
+                }
+
+
+            }
+
+            .pc-section:first-child {
+                border-right: 3px solid #ccc;
+            }
+
+            .pc-section:last-child {
+                padding-left: 10px;
+            }
+
+        }
+    }
+}

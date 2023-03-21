@@ -1,0 +1,5 @@
+<div class="interval-section">
+    <div class="interval" [ngClass]="{ 'active': interval.selected }" (click)="onIntervalChange(interval, i)" *ngFor="let interval of intervals; let i = index">
+        <h6>{{ interval.displayValue }}</h6>
+    </div>
+</div>

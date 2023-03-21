@@ -1,0 +1,19 @@
+<mat-nav-list class="nav-list">
+
+    <div mat-list-item  class="menu" *ngFor="let item of navItems; let i = index">
+        
+        <div matRipple class="menu-item" [ngClass]="{'active': i === 0 }">
+            <mat-icon>{{ item.icon }}</mat-icon>
+        </div>
+        
+        <p class="menu-text"> {{ item.name }} </p>
+
+    </div>
+
+    <div class="theme-button">
+        <button mat-icon-button>
+            <mat-icon>wb_sunny</mat-icon>
+        </button>
+    </div>
+
+</mat-nav-list>

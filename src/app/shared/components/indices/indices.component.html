@@ -1,0 +1,19 @@
+<div class="oca" *ngFor="let index of indices; let i = index">
+    <mat-card class="index-card" [ngClass]="{'active': i === 0 }">
+        <mat-card-content class="symbol-section">
+            <div class="symbol-icon">
+                <div class="icon-list">
+                    <div class="icon">{{ index.icon }}</div>
+                </div>
+            </div>
+            <div class="symbol-content">
+                <h6 class="symbol-name">{{ index.symbol }}</h6>
+                <p class="current-value">{{ convertPrice(index.currentPrice) }} INR 
+                    <span class="current-percentage" [ngClass]="index.percentageChange < 0 ? 'text-red': 'text-green'">
+                       {{ index.percentageChange > 0 ? '+': '' }}{{ index.percentageChange }}%
+                    </span>
+                </p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

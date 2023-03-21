@@ -1,0 +1,9 @@
+@import '/src/assets/styles/variables.scss';
+
+.sidebar {
+    background-color: $primary-color;
+}
+
+.content {
+    background-color: $body-bg !important;
+}

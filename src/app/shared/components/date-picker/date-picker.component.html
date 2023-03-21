@@ -1,0 +1,3 @@
+<mat-datepicker #picker></mat-datepicker>
+<mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+<input [(ngModel)]="date" (ngModelChange)="onDateSelection()"  class="datepicker-input" [matDatepicker]="picker" />

@@ -1,0 +1,136 @@
+@use '@angular/material' as mat;
+@import './assets/styles/variables.scss';
+@import './assets/styles/style.scss';
+@import './assets/styles/color.palette.scss';
+
+@include mat.core();
+
+
+// @include mat.core();
+
+$oca-primary:  mat.define-palette($primary-palette, 900);
+$oca-accent: mat.define-palette($secondary-palette, 300);
+
+// $oca-light-theme: mat-light-theme($oca-primary, $oca-accent, $oca-warn);
+// $oca-dark-theme: mat-dark-theme($oca-primary, $oca-accent, $oca-warn);
+
+// @include angular-material-theme($oca-light-theme);
+
+$oca-font: mat.define-typography-config(
+  $font-family: $font-family-regular
+);
+
+$theme: mat.define-light-theme((
+ color: (
+   primary: $oca-primary,
+   accent: $oca-accent
+ ),
+ typography: $oca-font,
+ density: 0,
+));
+
+@include mat.all-component-themes($theme);
+
+html {
+  overflow-x: hidden;
+}
+
+html, body { height: 100%; }
+
+body { 
+  margin: 0; 
+  font-family: $font-family-regular; 
+  background-color: $body-bg !important;
+  color: $text-color !important;
+}
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $sidebar-color;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-color;
+  transition: .4s;
+}
+
+
+.oca-card {
+  border: 1px solid #ccc !important;
+  box-shadow: none;
+  border-radius: 20px !important;
+}
+
+.title {
+  font-size: 18px;
+  font-family: $font-family-bold;
+}
+
+.bg-green {
+  background-color: $green-color;
+  color: $white-bg;
+}
+
+.bg-red {
+  background-color: $red-color;
+  color: $white-bg;
+}
+
+.bg-light-red {
+  background-color: $light-red;
+}
+
+.bg-light-green {
+  background-color: $light-green;
+}
+
+.bg-light-red {
+  background-color: $light-red;
+}
+
+.bg-light-green-2 {
+  background-color: $light-green-2;
+}
+
+.bg-light-red-2 {
+  background-color: $light-red-2;
+}
+
+.market-up {
+  transform: rotate(270deg);
+  color: $green-color;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.market-down {
+  transform: rotate(90deg);
+  color: $red-color;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.text-green {
+  color: $green-color !important;
+}
+
+.text-red {
+  color: $red-color !important;
+}
