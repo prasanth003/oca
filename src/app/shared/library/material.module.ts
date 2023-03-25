@@ -24,6 +24,7 @@ import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const MaterialModules = [
   MatAutocompleteModule,
@@ -51,7 +52,8 @@ const MaterialModules = [
   MatSliderModule,
   MatSlideToggleModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatToolbarModule
 ]
 
 @NgModule({

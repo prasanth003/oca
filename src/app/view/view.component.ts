@@ -11,6 +11,7 @@ export class ViewComponent implements AfterViewInit {
   public isHandset: boolean = false;
   public availableHeight: number = 0;
   public sidebarWidth: number = 80;
+  public navbarHeight: number = 70;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -24,9 +25,8 @@ export class ViewComponent implements AfterViewInit {
   /* Listing on window resize */
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    const navbarHeight: number = 0;
     const spacing: number = 0;
-    const availableHeight: number = window.innerHeight - (navbarHeight + spacing);
+    const availableHeight: number = window.innerHeight - spacing;
     this.availableHeight = availableHeight;
   }
 

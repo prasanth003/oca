@@ -1,0 +1,54 @@
+@import '/src/assets/styles/variables.scss';
+
+.navbar {
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    background-color: $body-bg;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    transition: all .4s;
+
+    .left-bar {
+        justify-content: flex-start;
+    }
+
+    .right-bar {
+        justify-content: flex-end;
+
+        .action-items {
+            display: inline-block;
+            margin-top: -10px;
+        }
+
+        .intersection {
+            background-color: #ccc;
+            width: 2px;
+            height: 20px;
+            display: inline-block;
+            margin: 10px 10px;
+        }
+
+        .date-picker {
+            position: relative;
+            top: -5px;
+        }
+
+        .profile-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: $primary-color;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            margin: 0px 10px;
+            position: relative;
+            top: -14px;
+          }
+
+    }
+}

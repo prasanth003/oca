@@ -1,8 +1,8 @@
-import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, AfterViewInit, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { SentimentsService } from 'src/app/shared/controller/data/sentiments/sentiments.service';
-import { getMarketTime } from 'src/app/shared/helpers/date.helper';
 import { iSentimentData } from 'src/app/shared/interface/sentimenet.interface';
+import { iOptions, iState } from 'src/app/shared/interface/state.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,16 +16,31 @@ export class DashboardComponent implements AfterViewInit {
   public availableHeight: number = 40;
 
   private currentDate: Date = new Date();
+  private interval: number = 1;
+  private timeRange: Date[] = [];
+
+  public runningInterval: any;
 
   constructor(
     private sentimentData: SentimentsService,
     private cdRef: ChangeDetectorRef,
-  ) { }
+    private store: Store<iState>
+  ) { 
+    this.store.select(state => state.option).subscribe({
+      next: (option: iOptions) => {
+        this.currentDate = option.currentDate;
+        this.interval = option.interval;
+        this.timeRange = option.range;
+        this.sentiments = [];
+        this.getSentiments(this.currentDate, this.interval);
+      }
+    })
+  }
 
   /* Listing on window resize */
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    const navbarHeight: number = 0;
+    const navbarHeight: number = 70;
     const spacing: number = 0;
     const availableHeight: number = window.innerHeight - (navbarHeight + spacing);
     this.availableHeight = availableHeight;
@@ -34,14 +49,17 @@ export class DashboardComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.onResize();
     this.getSentiments();
-    setInterval(() => {
-      this.getSentiments();
-    }, 20000);
+    
+    this.runningInterval = setInterval(() => {
+      this.getSentiments(this.currentDate, this.interval);
+    }, 15000);
+
     this.cdRef.detectChanges();
   }
 
-  private getSentiments(date: Date = new Date()): void {
-    this.sentimentData.getSentiments(date).subscribe({
+  private getSentiments(date: Date = new Date(), interval: number = 1): void {
+
+    this.sentimentData.getSentiments(date, interval, this.timeRange[0], this.timeRange[1]).subscribe({
       next: (res: iSentimentData[]) => {
         if (this.sentiments.length > 0) {
           res.forEach((seniment: iSentimentData) => {
@@ -56,19 +74,10 @@ export class DashboardComponent implements AfterViewInit {
         }
       }
     });
-  }
 
-  public onDateChange(date: Date): void {
-    this.currentDate = date;
-    this.sentiments = [];
-    this.getSentiments(this.currentDate);
-  }
-
-  public onTimeChange(event: Date[]): void {
-    console.log('event', event);
-  }
-
-  public onIntervalChange(interval: number): void {
-    console.log('interval', interval);
+    // if (!this.dataService.useInterval(this.currentDate)) {
+    //   clearInterval(this.runningInterval);
+    //   return null;
+    // }
   }
 }

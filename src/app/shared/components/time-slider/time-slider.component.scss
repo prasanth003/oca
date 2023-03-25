@@ -3,14 +3,14 @@
 ::ng-deep {
     .custom-slider .ngx-slider .ngx-slider-bar {
       background: $sidebar-color;
-      height: 2px;
+      height: 3px;
     }
     .custom-slider .ngx-slider .ngx-slider-selection {
       background: $primary-color;
     }
   
     .custom-slider .ngx-slider .ngx-slider-pointer {
-      width: 8px;
+      width: 10px;
       height: 16px;
       top: auto; /* to remove the default positioning */
       bottom: 0;

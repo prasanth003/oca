@@ -236,7 +236,7 @@ export class MarketSentimentComponent implements AfterViewInit, OnChanges {
           startAngle: 180,
           endAngle: 0,
           center: ['50%', '75%'],
-          radius: '80%',
+          radius: '100%',
           min: min,
           max: max,
           splitNumber: 8,
@@ -244,10 +244,10 @@ export class MarketSentimentComponent implements AfterViewInit, OnChanges {
             lineStyle: {
               width: 6,
               color: [
-                [0.25, '#FF6E76'],
-                [0.5, '#FDDD60'],
-                [0.75, '#58D9F9'],
-                [1, '#7CFFB2']
+                [0.25, '#C83A3A'],
+                [0.5, '#EFC4C4'],
+                [0.75, '#CCE8D1'],
+                [1, '#008A19']
               ]
             }
           },
@@ -255,7 +255,8 @@ export class MarketSentimentComponent implements AfterViewInit, OnChanges {
             color: '#464646',
             fontSize: 10,
             distance: -30,
-            rotate: 'tangential',
+            lineHeight: 30,
+            // rotate: 'tangential',
             formatter: function (value) {
               if (value === max) {
                 return 'Strong Buy';
@@ -267,15 +268,15 @@ export class MarketSentimentComponent implements AfterViewInit, OnChanges {
                 return 'Strong Sell';
               }
               return '';
-            }
+            },
+            valueAnimation: true
           },
           title: {
-            offsetCenter: [0, '-10%'],
-            fontSize: 20
+            show: false
           },
           detail: {
-            fontSize: 10,
-            offsetCenter: [0, '-35%'],
+            fontSize: 14,
+            offsetCenter: [0, '35%'],
             valueAnimation: true,
             formatter: function (value) {
               return Math.round(value) + '';

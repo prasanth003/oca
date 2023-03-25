@@ -22,7 +22,7 @@ $font-size-h5:            $font-size-base;
 $font-size-h6:            floor(($font-size-base * 0.86)); // ~12px
 
 
-$primary-color:            #031740;
+$primary-color:            var(--primary-color); //#031740;
 $secondary-color:           #ff97a3;
 
 $green-color: #008A19;
@@ -34,11 +34,11 @@ $light-red: #EFC4C4;
 $light-red-2: #efc4c46f;
 
 //** Background color for `<body>`.
-$body-bg:                  #f8f9fc;  //var(--background-color);
+$body-bg:                  var(--background-color);
 $card-bg:                  #fafafa; //var(--background-cards);
 $white-bg:                 #ffffff;
 
-$text-color:               #000000;
+$text-color:               var(--text-color);
 $text-color-light:         #333333;
 
 

@@ -1,3 +1,5 @@
+@import '/src/assets/styles/variables.scss';
+
 .datepicker-input {
     padding: 0;
     margin: 0;
@@ -6,9 +8,26 @@
     width: 0;
 }
 
+.selectedDate {
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+    top: -10px;
+    margin-left: 8px;
+    color: $text-color;
+}
+
 ::ng-deep {
     .mat-mdc-icon-button svg {
         position: relative;
         top: -3px;
+    }
+}
+
+
+@media only screen and (max-width: 760px) {
+    .selectedDate {
+        display: none;
+        margin-left: 0;
     }
 }

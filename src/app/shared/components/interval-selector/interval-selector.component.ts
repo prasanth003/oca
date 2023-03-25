@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { iInterval } from '../../interface/interval.interface';
+import { iOptions, iState } from '../../interface/state.interface';
 
 @Component({
   selector: 'interval-selector',
@@ -13,38 +15,50 @@ export class IntervalSelectorComponent {
   public intervals: iInterval[] = [
     {
       displayValue: '1M',
-      value: 60,
+      value: 1,
       selected: true
     },
     {
       displayValue: '5M',
-      value: 300,
+      value: 5,
       selected: false
     },
     {
       displayValue: '15M',
-      value: 900,
+      value: 15,
       selected: false
     },
     {
       displayValue: '30M',
-      value: 1800,
+      value: 30,
       selected: false
     },
     {
       displayValue: '45M',
-      value: 2700,
+      value: 45,
       selected: false
     },
     {
       displayValue: '1H',
-      value: 3600,
+      value: 60,
       selected: false
     }
   ];
 
+  constructor(private store: Store<iState>) {
+    this.store.select(state => state.option).subscribe({
+      next: (option: iOptions) => {
+        this.intervals.forEach((interval: iInterval) => interval.selected = false);
+        const index: number = this.intervals.findIndex((interval: iInterval) => interval.value === option.interval);
+        if (index !== -1) {
+          this.intervals[index].selected = true;
+        }
+      }
+    });
+  }
+
   public onIntervalChange(interval: iInterval, index: number): void {
-    this.intervals.map((interval: iInterval) => interval.selected = false);
+    this.intervals.forEach((interval: iInterval) => interval.selected = false);
     interval.selected = true;
     this.intervals[index] = interval;
     this.onChange.emit(interval.value);

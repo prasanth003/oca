@@ -1,7 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts';
+import { ThemeService } from '../../controller/common/theme/theme.service';
 import { formatNumber } from '../../helpers/number-formatter.helper';
 import { iSentimentData } from '../../interface/sentimenet.interface';
+import { iState, iTheme } from '../../interface/state.interface';
 
 @Component({
   selector: 'current-trend',
@@ -21,8 +24,24 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
   @Input() newRecord: iSentimentData;
 
   constructor(
-    private cdRef: ChangeDetectorRef
-  ) { }
+    private cdRef: ChangeDetectorRef,
+    private store: Store<iState>
+  ) {
+    this.store.select(state => state.theme).subscribe({
+      next: (theme: iTheme) => {
+        if (this.chart) {
+          this.chart.applyOptions({
+            layout: {
+              background: {
+                color: theme.name === 'light' ? '#fff': '#000'
+              },
+              textColor: theme.name === 'light' ? '#1e1e1e': '#fafafa'
+            }
+          })
+        }
+      }
+    })
+  }
 
   /* Listing on window resize */
   @HostListener('window:resize', ['$event'])
@@ -76,9 +95,6 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
           vertLine: {
             visible: true
           }
-        },
-        layout: {
-          textColor: '#333'
         },
         grid: {
           horzLines: {

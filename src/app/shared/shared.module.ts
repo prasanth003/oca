@@ -10,6 +10,8 @@ import { TimeSliderComponent } from './components/time-slider/time-slider.compon
 import { IntervalSelectorComponent } from './components/interval-selector/interval-selector.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CompactDatePipe } from './pipe/compact-date.pipe';
 
 const component = [
   ChartComponent,
@@ -18,12 +20,18 @@ const component = [
   IndicesComponent,
   TimeSliderComponent,
   IntervalSelectorComponent,
-  DatePickerComponent
+  DatePickerComponent,
+  NavbarComponent
+]
+
+const pipe = [
+  CompactDatePipe
 ]
 
 @NgModule({
   declarations: [
-    ...component
+    ...component,
+    ...pipe
   ],
   imports: [
     CommonModule,
@@ -31,7 +39,8 @@ const component = [
     RouterModule
   ],
   exports: [
-    ...component
+    ...component,
+    ...pipe
   ]
 })
 export class SharedModule { }

@@ -1,18 +1,13 @@
 @import '/src/assets/styles/variables.scss';
 
-.date-picker {
-    position: relative;
-    top: -6px;
-    left: 5px;
-}
-
 .daashboard-layout {
     display: flex;
     width: 100%;
 
     .left-content {
         width: 75%;
-        background-color: $white-bg;
+        background-color: $body-bg;
+        transition: all .5s;
         padding: 20px;
         overflow-y: auto;
 
@@ -26,6 +21,30 @@
         width: 25%;
         padding: 20px;
         overflow-y: auto;
+        transition: all .5s;
     }
 
+}
+
+
+@media only screen and (max-width: 1400px) {
+
+    .left-content {
+        width: 70% !important; 
+    }
+    
+    .right-content {
+        width: 30% !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .left-content {
+        width: 60% !important; 
+    }
+    
+    .right-content {
+        width: 40% !important;
+    }
 }

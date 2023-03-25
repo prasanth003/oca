@@ -1,6 +1,9 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { OptionService } from '../../controller/common/option/option.service';
 import { getMarketTime } from '../../helpers/date.helper';
+import { iOptions, iState } from '../../interface/state.interface';
 
 const date: Date = new Date();
 date.setHours(9, 15);
@@ -19,7 +22,20 @@ export class TimeSliderComponent {
   public minValue: number = date.getTime();
   public maxValue: number = toDate.getTime();
 
-  @Output() onTimeChange: EventEmitter<Date[]> = new EventEmitter<Date[]>();
+  constructor(
+    private store: Store<iState>,
+    private option: OptionService
+  ) {
+    this.store.select(state => state.option).subscribe({
+      next: (option: iOptions) => {
+        console.log('options', option);
+        if (option && option.range && option.range[0] && option.range[1]) {
+          this.minValue = new Date(option.range[0]).getTime();
+          this.maxValue = new Date(option.range[1]).getTime();
+        }
+      }
+    })
+  }
 
   public options: Options = {
     floor: this.dateRange[0].getTime(),
@@ -30,12 +46,15 @@ export class TimeSliderComponent {
   };
   
   /**
-   * Trigger when the slider changes
+   * Update the state when the slider changes
   */
   public onSliderChange(): void {
-    this.onTimeChange.emit([
+    const range: Date[] = [
       new Date(this.minValue),
       new Date(this.maxValue)
-    ]);
+    ];
+
+    localStorage.setItem('range', JSON.stringify(range));
+    this.option.updateRange(range);
   }
 }

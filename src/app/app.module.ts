@@ -5,8 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CrudService } from './shared/controller/common/crud/crud.service';
-import { SentimentsService } from './shared/controller/data/sentiments/sentiments.service';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from './shared/state/reducer';
+import { environment } from 'src/environment/environment';
+import { ThemeService } from './shared/controller/common/theme/theme.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +19,13 @@ import { SentimentsService } from './shared/controller/data/sentiments/sentiment
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
-    HttpClientModule
+    HttpClientModule,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

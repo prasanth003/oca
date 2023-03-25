@@ -11,8 +11,11 @@
     </div>
 
     <div class="theme-button">
-        <button mat-icon-button>
-            <mat-icon>wb_sunny</mat-icon>
+        <button mat-icon-button *ngIf="currentTheme === 'light'"  (click)="switchTheme('dark')">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button mat-icon-button *ngIf="currentTheme === 'dark'"  (click)="switchTheme('light')">
+            <i class="fas fa-sun"></i>
         </button>
     </div>
 

@@ -3,6 +3,11 @@
 @import './assets/styles/style.scss';
 @import './assets/styles/color.palette.scss';
 
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+
 @include mat.core();
 
 
@@ -20,7 +25,7 @@ $oca-font: mat.define-typography-config(
   $font-family: $font-family-regular
 );
 
-$theme: mat.define-light-theme((
+$light-theme: mat.define-light-theme((
  color: (
    primary: $oca-primary,
    accent: $oca-accent
@@ -29,7 +34,22 @@ $theme: mat.define-light-theme((
  density: 0,
 ));
 
-@include mat.all-component-themes($theme);
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: $oca-primary,
+   accent: $oca-accent
+ ),
+ typography: $oca-font,
+ density: 0,
+));
+
+.material-dark { 
+  @include mat.all-component-themes($dark-theme);
+}
+
+.material-light { 
+  @include mat.all-component-themes($light-theme);
+}
 
 html {
   overflow-x: hidden;
@@ -42,6 +62,7 @@ body {
   font-family: $font-family-regular; 
   background-color: $body-bg !important;
   color: $text-color !important;
+  transition: all .5s;
 }
 
 /* Scrollbar */

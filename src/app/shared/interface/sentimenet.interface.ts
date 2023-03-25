@@ -1,4 +1,6 @@
 export interface iSentimentData {
+    ceoi: number;
+    peoi: number;
     ceoiChange: number;
     peoiChange: number;
     sentiment: number;

@@ -1,0 +1,30 @@
+<mat-toolbar class="navbar" color="primary" [style.height]="height">
+
+    <div class="left-bar">
+
+    </div>
+
+    <div class="right-bar">
+
+        <div class="action-items">
+            <interval-selector (onChange)="onIntervalChange($event)"></interval-selector>
+        </div>
+
+        <div class="intersection"></div>
+
+        <div class="action-items">
+            <span class="date-picker">
+                <date-picker (onDateChange)="onDateChange($event)"></date-picker>
+            </span>
+        </div>
+
+        <div class="intersection"></div>
+
+        <div class="action-items">
+            <div class="profile-circle">PS</div>
+        </div>
+
+
+    </div>
+
+</mat-toolbar>

@@ -7,3 +7,11 @@
 .content {
     background-color: $body-bg !important;
 }
+
+mat-sidenav-container {
+    overflow-y: hidden !important;
+}
+
+.app-view {
+    overflow: hidden !important;
+}

@@ -2,20 +2,12 @@
 
     <div class="left-content">
 
-        <div class="d-flex align-items-center mb-2">
-            <div>
-                <select-index></select-index>
-            </div>
-            <div class="ms-auto">
-                <interval-selector (onChange)="onIntervalChange($event)"></interval-selector>
-                <span class="date-picker">
-                    <date-picker (onDateChange)="onDateChange($event)"></date-picker>
-                </span>
-            </div>
+        <div class="mb-2">
+            <!-- <select-index></select-index>             -->
+            <!-- <date-picker (onDateChange)="onDateChange($event)"></date-picker> -->
+            <time-slider></time-slider> 
         </div>
-            
 
-        <time-slider (onTimeChange)="onTimeChange($event)"></time-slider>
 
         
         <current-trend [sentiments]="sentiments" [newRecord]="newSentiment"></current-trend>
@@ -25,7 +17,7 @@
             <h5>Market Summary</h5>
 
             <div class="row gt">
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <market-sentiment [sentiments]="sentiments" [newRecord]="newSentiment"></market-sentiment>
                 </div>
             </div>
