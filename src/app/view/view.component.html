@@ -1,5 +1,5 @@
 <mat-sidenav-container class="app-view" [style.height]="availableHeight + 'px'">
-    <mat-sidenav class="sidebar" #sidenav mode="side" [opened]="!isHandset" [style.width]="sidebarWidth + 'px'">
+    <mat-sidenav [class]="theme === 'light' ? 'sidebar': 'sidebar-dark'" #sidenav mode="side" [opened]="!isHandset" [style.width]="sidebarWidth + 'px'">
         <oca-sidebar></oca-sidebar>
     </mat-sidenav>
     <mat-sidenav-content class="content">

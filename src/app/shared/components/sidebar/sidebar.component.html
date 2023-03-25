@@ -2,7 +2,7 @@
 
     <div mat-list-item  class="menu" *ngFor="let item of navItems; let i = index">
         
-        <div matRipple class="menu-item" [ngClass]="{'active': i === 0 }">
+        <div matRipple class="menu-item" [ngClass]="i === 0 && currentTheme === 'light' ? 'active': (i === 0 && currentTheme === 'dark' ? 'active-dark': '')">
             <mat-icon>{{ item.icon }}</mat-icon>
         </div>
         

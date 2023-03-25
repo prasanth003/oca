@@ -42,6 +42,14 @@
             }
         }
 
+        .active-dark {
+            background-color: $primary-color;
+
+            mat-icon { 
+                color: $text-color-white;
+            }
+        }
+
         .menu-item:hover {
             background-color: $menu-color;
             transition: 0.4s;
