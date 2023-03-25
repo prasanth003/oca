@@ -1,8 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts';
-import { ThemeService } from '../../controller/common/theme/theme.service';
-import { formatNumber } from '../../helpers/number-formatter.helper';
+import { Defaults } from '../../configuration/defaults.config';
 import { iSentimentData } from '../../interface/sentimenet.interface';
 import { iState, iTheme } from '../../interface/state.interface';
 
@@ -14,7 +13,7 @@ import { iState, iTheme } from '../../interface/state.interface';
 export class CurrentTrendComponent implements AfterViewInit, OnChanges {
 
   public chart: IChartApi;
-  private chartHeight: number = 400;
+  private chartHeight: number = 350;
   private chartData: { value: number, time: number }[] = [];
   public areaSeries: ISeriesApi<'Baseline'>;
 
@@ -27,6 +26,7 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
     private cdRef: ChangeDetectorRef,
     private store: Store<iState>
   ) {
+    
     this.store.select(state => state.theme).subscribe({
       next: (theme: iTheme) => {
         if (this.chart) {
@@ -40,7 +40,7 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
           })
         }
       }
-    })
+    });
   }
 
   /* Listing on window resize */
@@ -74,6 +74,9 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
 
     if (!this.trendElement || !this.trendElement.nativeElement) return null;
     const element: HTMLElement = this.trendElement.nativeElement;
+    
+    let theme: string = localStorage.getItem('theme');
+    theme = theme ? theme: Defaults.Theme;
 
     this.chart = createChart(element,
       {
@@ -83,10 +86,23 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
           mouseWheel: true,
           pinch: true
         },
+        kineticScroll: {
+          mouse: true,
+          touch: true
+        },
+        handleScroll: {
+          pressedMouseMove: true,
+          horzTouchDrag: true,
+          mouseWheel: true,
+          vertTouchDrag: true
+        },
         timeScale: {
           visible: true,
           timeVisible: true,
           secondsVisible: true
+        },
+        overlayPriceScales: {
+          ticksVisible: true
         },
         crosshair: {
           horzLine: {
@@ -104,6 +120,12 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
             color: '#cccccc1f'
           }
         },
+        layout: {
+          background: {
+            color: theme === 'light' ? '#fff': '#000'
+          },
+          textColor: theme === 'light' ? '#1e1e1e': '#fafafa'
+        },
         rightPriceScale: {
           entireTextOnly: true,
           autoScale: true,
@@ -118,13 +140,8 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
     });
 
     this.chart.timeScale().fitContent();
-
     this.areaSeries = this.chart.addBaselineSeries();
-
-    // this.areaSeries.priceFormatter().format(formatNumber)
-
     this.cdRef.detectChanges();
-
   }
 
 

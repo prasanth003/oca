@@ -5,44 +5,26 @@
     <div class="content-section">
         <div class="fab-time">{{ timeToTz(sentiment.timestamp) }}</div>
         <p class="scope-title">LTP 
-            <span class="amount">{{ convertPrice(sentiment.lastPrice) }} </span> |  
+            <span class="amount">{{ sentiment.lastPrice | numberFormat }} </span> |  
             Diff 
             <span class="sentiment amount" [ngClass]="(sentiment.peoiChange - sentiment.ceoiChange) < 0 ? 'text-red': 'text-green'">
-                {{ convertPrice(sentiment.peoiChange - sentiment.ceoiChange) }}
+                {{ (sentiment.peoiChange - sentiment.ceoiChange) | numberFormat }}
             </span>
         </p>
         
         <div class="pc-compare">
-            <!-- <div class="pc-section">
+            <div class="pc-section">
                 <span class="pc-type">Put</span>
                 <span class="pc-price" [ngClass]="sentiment.peoiChange < 0 ? 'bg-red' :  'bg-green'">
-                    {{ convertPrice(sentiment.peoiChange) }}
+                    {{ sentiment.peoiChange | numberFormat }}
                 </span>
             </div>
             <div class="pc-section">
                 <span class="pc-type">Call</span>
                 <span class="pc-price" [ngClass]="sentiment.ceoiChange < 0 ? 'bg-red' :  'bg-green'">
-                    {{ convertPrice(sentiment.ceoiChange) }}
-                </span>
-            </div> -->
-            <div class="pc-section">
-                <span class="pc-type">Put OI</span>
-                <span class="pc-price" [ngClass]="sentiment.peoi < 0 ? 'bg-red' :  'bg-green'">
-                    {{ convertPrice(sentiment.peoi) }}
-                </span>
-            </div>
-            <div class="pc-section">
-                <span class="pc-type">Call OI</span>
-                <span class="pc-price" [ngClass]="sentiment.ceoi < 0 ? 'bg-red' :  'bg-green'">
-                    {{ convertPrice(sentiment.ceoi) }}
+                    {{ sentiment.ceoiChange | numberFormat }}
                 </span>
             </div>
         </div>
-        <p>OI Difference: 
-
-            <span class="pc-price" [ngClass]="(sentiment.peoi - sentiment.ceoi) < 0 ? 'text-red': 'text-green'">
-                {{ sentiment.peoi - sentiment.ceoi }}
-            </span>
-            </p>
     </div>
 </div>

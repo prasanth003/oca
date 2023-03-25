@@ -6,11 +6,14 @@ import { PcChangeComponent } from './pc-change/pc-change.component';
 import { PcContentComponent } from './pc-change/pc-content/pc-content.component';
 import { MarketSentimentComponent } from './market-sentiment/market-sentiment.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { OpenInterestComponent } from './open-interest/open-interest.component';
+import { SharedModule } from '../shared.module';
 
 const components = [
   CurrentTrendComponent,
   PcChangeComponent,
-  MarketSentimentComponent
+  MarketSentimentComponent,
+  OpenInterestComponent
 ]
 
 @NgModule({
@@ -24,6 +27,7 @@ const components = [
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
+    SharedModule
   ],
   exports: [
     ...components

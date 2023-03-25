@@ -5,16 +5,17 @@
     
     .interval {
         display: inline-block;
-        margin: 0px 5px;
+        margin: 0px 2px;
         border-radius: 8px;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         position: relative;
         cursor: pointer;
+        top: -3px;
 
         h6 {
             font-family: $font-family-regular !important;
-            font-size: 14px;
+            font-size: 0.75rem;
             position: absolute;
             top: 50%;
             left: 50%;

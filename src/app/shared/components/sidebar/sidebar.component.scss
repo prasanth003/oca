@@ -10,15 +10,15 @@
         padding: 5px 0px;
         
         .menu-item {
-            padding: 6px 0px;
+            padding: 4px 0px;
             border-radius: 20px;
             text-align: center;
             cursor: pointer;
 
             mat-icon {
-                width: 20px;
-                height: 20px;
-                font-size: 20px;
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
                 position: relative;
                 top: 3px;
                 color: #eee;
@@ -27,7 +27,7 @@
 
         .menu-text {
             text-align: center;
-            font-size: 12px;
+            font-size: 0.65rem;
             margin-bottom: 0px;
             margin-top: 3px;
             font-family: $font-family-semibold;
@@ -61,8 +61,11 @@
             border: 1px solid #cccccc1f;
             i {
                 position: relative;
-                top: -7px;
+                top: -9px;
                 color: #ccc;
+                width: 18px;
+                height: 18px;
+                font-size: 18px;
             }
         }
     }

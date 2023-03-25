@@ -10,7 +10,7 @@ export class ViewComponent implements AfterViewInit {
   
   public isHandset: boolean = false;
   public availableHeight: number = 0;
-  public sidebarWidth: number = 80;
+  public sidebarWidth: number = 70;
   public navbarHeight: number = 70;
 
   constructor(

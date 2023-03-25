@@ -22,24 +22,32 @@ $font-size-h5:            $font-size-base;
 $font-size-h6:            floor(($font-size-base * 0.86)); // ~12px
 
 
-$primary-color:            var(--primary-color); //#031740;
-$secondary-color:           #ff97a3;
+$primary-color:            var(--primary-color);
+$secondary-color:          var(--secondary-color);
 
-$green-color: #008A19;
-$light-green: #CCE8D1;
-$light-green-2: #cce8d19c;
-
-$red-color: #C83A3A;
-$light-red: #EFC4C4;
-$light-red-2: #efc4c46f;
-
-//** Background color for `<body>`.
-$body-bg:                  var(--background-color);
-$card-bg:                  #fafafa; //var(--background-cards);
-$white-bg:                 #ffffff;
+$scroll-bar:               var(--scroll-bar);
+$progress-bar:             var(--progress-bar);
 
 $text-color:               var(--text-color);
-$text-color-light:         #333333;
+$text-color-light:         var(--text-color-light);
+
+$body-bg:                  var(--background-color);
+$border-color:             var(--border-color);
+$light-bg:                 var(--transparent-container);
+$white-bg:                 #ffffff;
+
+$green-color:              var(--green-color);
+$light-green:              var(--green-light);
+$light-green-2:            var(--green-extra-light);
+
+$red-color:                var(--red-color);
+$light-red:                var(--red-light);
+$light-red-2:              var(--red-extra-light);
+
+
+
+
+
 
 
 $sidebar-color:           #eff4ff;

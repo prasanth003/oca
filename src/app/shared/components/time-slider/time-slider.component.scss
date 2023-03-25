@@ -3,7 +3,7 @@
 ::ng-deep {
     .custom-slider .ngx-slider .ngx-slider-bar {
       background: $sidebar-color;
-      height: 3px;
+      // height: 100%;
     }
     .custom-slider .ngx-slider .ngx-slider-selection {
       background: $primary-color;
@@ -24,7 +24,8 @@
     }
   
     .custom-slider .ngx-slider .ngx-slider-bubble {
-      bottom: 14px;
+      bottom: 20px;
+      font-size: 0.80rem;
     }
   
     .custom-slider .ngx-slider .ngx-slider-limit {

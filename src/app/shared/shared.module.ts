@@ -12,6 +12,7 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompactDatePipe } from './pipe/compact-date.pipe';
+import { NumberFormatPipe } from './pipe/number-format.pipe';
 
 const component = [
   ChartComponent,
@@ -25,7 +26,8 @@ const component = [
 ]
 
 const pipe = [
-  CompactDatePipe
+  CompactDatePipe,
+  NumberFormatPipe
 ]
 
 @NgModule({

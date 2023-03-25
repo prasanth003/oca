@@ -2,6 +2,7 @@
 
 .pc-content {
     display: flex;
+    
     .graph-section {
         width: 100px;
     }
@@ -13,9 +14,10 @@
 
         .scope-title {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.75rem;
             font-family: $font-family-medium;
             margin-bottom: 0px;
+            color: $text-color;
 
             .amount {
                 font-family: $font-family-semibold;
@@ -30,7 +32,7 @@
         .fab-time {
             position: absolute;
             right: 0;
-            font-size: 12px;
+            font-size: 0.65rem;
             font-family: $font-family-bold;
             top: 0;
             font-weight: 900;
@@ -45,13 +47,14 @@
                 flex: 1;
 
                 .pc-type {
-                    font-size: 14px;
+                    font-size: 0.75rem;
                     font-family: $font-family-bold;
+                    color: $text-color;
                 }
 
                 .pc-price {
                     padding: 2px 5px;
-                    font-size: 13px;
+                    font-size: 0.75rem;
                     font-family: $font-family-regular;
                     border-radius: 4px;
                     position: relative;
@@ -63,7 +66,7 @@
             }
 
             .pc-section:first-child {
-                border-right: 3px solid #ccc;
+                border-right: 3px solid $border-color;
             }
 
             .pc-section:last-child {

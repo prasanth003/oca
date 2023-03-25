@@ -28,7 +28,6 @@ export class TimeSliderComponent {
   ) {
     this.store.select(state => state.option).subscribe({
       next: (option: iOptions) => {
-        console.log('options', option);
         if (option && option.range && option.range[0] && option.range[1]) {
           this.minValue = new Date(option.range[0]).getTime();
           this.maxValue = new Date(option.range[1]).getTime();
@@ -54,7 +53,7 @@ export class TimeSliderComponent {
       new Date(this.maxValue)
     ];
 
-    localStorage.setItem('range', JSON.stringify(range));
+    sessionStorage.setItem('range', JSON.stringify(range));
     this.option.updateRange(range);
   }
 }

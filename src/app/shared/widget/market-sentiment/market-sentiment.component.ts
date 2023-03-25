@@ -77,10 +77,6 @@ export class MarketSentimentComponent implements AfterViewInit, OnChanges {
     }
 
     this.createGauge(smallest, largest, currentSentiment);
-
-
-    console.log('sentiments', smallest, largest, currentSentiment);
-
   }
 
   private createBuyChart(): void {

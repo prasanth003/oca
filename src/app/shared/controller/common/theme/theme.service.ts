@@ -37,6 +37,8 @@ export class ThemeService {
       );
     });
 
+    
+
     this.updateMaterialTheme(theme);
   }
 

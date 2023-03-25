@@ -18,12 +18,12 @@ export class NavbarComponent {
 
   public onDateChange(date: Date): void {
     this.option.updateDate(date);
-    localStorage.setItem('date', date.toString());
+    sessionStorage.setItem('date', date.toString());
   }
 
   public onIntervalChange(interval: number): void {
     this.option.updateInterval(interval);
-    localStorage.setItem('interval', interval.toString());
+    sessionStorage.setItem('interval', interval.toString());
   }
 
 }

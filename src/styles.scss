@@ -62,14 +62,13 @@ body {
   font-family: $font-family-regular; 
   background-color: $body-bg !important;
   color: $text-color !important;
-  transition: all .5s;
 }
 
 /* Scrollbar */
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   height: 5px;
 }
 
@@ -80,25 +79,25 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $sidebar-color;
+  background: $scroll-bar;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $primary-color;
-  transition: .4s;
+  transition: all .5s;
 }
 
 
 .oca-card {
-  border: 1px solid #ccc !important;
+  border: 1px solid $border-color !important;
   box-shadow: none;
   border-radius: 20px !important;
 }
 
 .title {
-  font-size: 18px;
+  font-size: 16px;
   font-family: $font-family-bold;
 }
 

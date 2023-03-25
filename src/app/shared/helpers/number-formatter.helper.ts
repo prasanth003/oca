@@ -14,5 +14,5 @@ export function formatNumber(numToConvert: number = 0): string {
         currency: 'INR' 
     };
 
-    return numToConvert.toLocaleString('en-US', options);
+    return numToConvert.toLocaleString('en-IN', options);
 }
