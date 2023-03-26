@@ -74,5 +74,16 @@
             }
 
         }
+
+        .pc-ratio {
+            font-size: 0.75rem;
+            margin-bottom: 0px;
+            margin-top: 5px;
+
+            .pc-ratio-number {
+                font-size: 0.8rem;
+                font-family: $font-family-semibold;
+            }
+        }
     }
 }

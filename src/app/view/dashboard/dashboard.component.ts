@@ -40,7 +40,7 @@ export class DashboardComponent implements AfterViewInit {
   /* Listing on window resize */
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    const navbarHeight: number = 70;
+    const navbarHeight: number = 64;
     const spacing: number = 0;
     const availableHeight: number = window.innerHeight - (navbarHeight + spacing);
     this.availableHeight = availableHeight;

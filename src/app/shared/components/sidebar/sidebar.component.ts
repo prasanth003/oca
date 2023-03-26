@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ThemeService } from '../../controller/common/theme/theme.service';
+import { Menu } from '../../configuration/menu.config';
+import { iMenu } from '../../interface/menu.interface';
 import { iState, iTheme } from '../../interface/state.interface';
 import { Theme } from '../../state/action/theme.action';
 
@@ -9,9 +11,11 @@ import { Theme } from '../../state/action/theme.action';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements AfterViewInit {
 
   public currentTheme: 'light' | 'dark' = 'light';
+  public activeClass: string = 'active';
+  public menu: iMenu[] = Menu;
   
   public navItems = [
     { name: 'Market', icon: 'show_chart', link: '/dashboard' },
@@ -21,16 +25,29 @@ export class SidebarComponent {
     { name: 'Settings', icon: 'settings', link: '/settings' }
   ];
 
-  constructor(private store: Store<iState>) {
-    this.store.select(state => state.theme).subscribe({
-      next: (res: iTheme) => this.currentTheme = res.name
-    })
+  constructor(
+    private store: Store<iState>,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) { }
 
+  public ngAfterViewInit(): void {
+    this.store.select(state => state.theme).subscribe({
+      next: (theme: iTheme) => { 
+        this.currentTheme = theme.name;
+        this.activeClass = this.currentTheme === 'light' ? 'active': 'active-dark';
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   public switchTheme(theme: 'light' | 'dark'): void {
-    this.currentTheme = theme;
     this.store.dispatch(new Theme(theme));
+  }
+
+  public isActive(path: string): boolean {
+    if (this.router.url === path) return true;
+    return false;
   }
 
 }

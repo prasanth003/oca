@@ -1,12 +1,12 @@
 <mat-nav-list class="nav-list">
 
-    <div mat-list-item  class="menu" *ngFor="let item of navItems; let i = index">
-        
-        <div matRipple class="menu-item" [ngClass]="i === 0 && currentTheme === 'light' ? 'active': (i === 0 && currentTheme === 'dark' ? 'active-dark': '')">
-            <mat-icon>{{ item.icon }}</mat-icon>
+    <div mat-list-item  class="menu" *ngFor="let item of menu">
+
+        <div matRipple class="menu-item" [routerLink]="item.path" [ngClass]="isActive(item.path) ? this.activeClass: ''">
+            <i class="fas" [class]="item.icon"></i>
         </div>
         
-        <p class="menu-text"> {{ item.name }} </p>
+        <p class="menu-text"> {{ item.menu }} </p>
 
     </div>
 

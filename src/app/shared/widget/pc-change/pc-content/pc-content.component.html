@@ -26,5 +26,45 @@
                 </span>
             </div>
         </div>
+
+        <p class="pc-ratio">BS Ratio  
+            <span class="pc-ratio-number" [ngClass]="findPCRatio(sentiment) < 0 ? 'text-red': 'text-green'">
+                {{  findPCRatio(sentiment) | numberFormat }} 
+            </span>
+        </p>
+
+        <hr>
+
+        <div class="pc-compare">
+            <div class="pc-section">
+                <span class="pc-type">Buy</span>
+                <span class="pc-price" [ngClass]="sentiment.peBuyChange < 0 ? 'bg-red' :  'bg-green'">
+                    {{ sentiment.peBuyChange | numberFormat }}
+                </span>
+            </div>
+            <div class="pc-section">
+                <span class="pc-type">Buy</span>
+                <span class="pc-price" [ngClass]="sentiment.ceBuyChange < 0 ? 'bg-red' :  'bg-green'">
+                    {{ sentiment.ceBuyChange | numberFormat }}
+                </span>
+            </div>
+        </div>
+
+        <div class="pc-compare">
+            <div class="pc-section">
+                <span class="pc-type">Sell</span>
+                <span class="pc-price" [ngClass]="sentiment.peSellChange < 0 ? 'bg-red' :  'bg-green'">
+                    {{ sentiment.peSellChange | numberFormat }}
+                </span>
+            </div>
+            <div class="pc-section">
+                <span class="pc-type">Sell</span>
+                <span class="pc-price" [ngClass]="sentiment.ceSellChange < 0 ? 'bg-red' :  'bg-green'">
+                    {{ sentiment.ceSellChange | numberFormat }}
+                </span>
+            </div>
+        </div>
+
+
     </div>
 </div>

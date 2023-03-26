@@ -87,7 +87,7 @@ export class PcContentComponent implements AfterViewInit {
     return (hour < 10 ? ('0' + hour): hour) + ':' + (minute < 10 ? ('0' + minute): minute);
   }
 
-  public convertPrice(price: number): string {
-    return formatNumber(price);
+  public findPCRatio(sentiment: iSentimentData): number {
+    return (sentiment.ceBuyChange + sentiment.peSellChange) - (sentiment.peBuyChange + sentiment.ceSellChange);
   }
 }

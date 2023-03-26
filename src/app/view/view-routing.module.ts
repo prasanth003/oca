@@ -9,7 +9,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'market',
+        pathMatch: 'full'
+      },
+      {
+        path: 'market',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'summary',
+        loadChildren: () => import('./summary/summary.module').then(m => m.SummaryModule)
       }
     ]
   }

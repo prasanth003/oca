@@ -6,23 +6,23 @@
       </mat-card-header>
     <mat-card-content class="section">
         
-        <h6 class="highlighted-amount">{{ 1223133 | numberFormat }}</h6>
+        <h6 class="highlighted-amount">{{ overallIntrest.current | numberFormat }} ({{ oiDiff | numberFormat }})</h6>
 
         <div class="floating-tag">
-            <div class="tag bg-light-red">
-                - 10%
-                <mat-icon class="market-down market-status">play_arrow</mat-icon>
+            <div class="tag" [ngClass]="oiDiff > 0 ? 'bg-light-green': 'bg-light-red'">
+                &nbsp;{{ overallIntrest.changePercent | number:'1.0-0' }}%
+                <mat-icon class="market-status" [ngClass]="oiDiff > 0 ? 'market-up': 'market-down'">play_arrow</mat-icon>
             </div>
         </div>
         
 
         <div class="bar">
 
-            <p style="text-align: left;">{{ 1223133 | numberFormat }}</p>
-            <p style="text-align: right;">{{ 1223133 | numberFormat }}</p>
+            <p style="text-align: left;">{{ overallIntrest.min | numberFormat }}</p>
+            <p style="text-align: right;">{{ overallIntrest.max | numberFormat }}</p>
 
-            <div class="winning-bar">
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <div class="" [ngClass]="type === 'call' ? 'lossing-bar': 'winning-bar'">
+                <mat-progress-bar mode="determinate" [value]="overallIntrest.progress"></mat-progress-bar>
             </div>
     
         </div>
@@ -30,22 +30,22 @@
         <div class="bs-content">
             <div class="bs-container">
                 <h6 class="bs-title">Buy</h6>
-                <p class="highlighted-amount">{{ 1223133 | numberFormat }}</p>
+                <p class="highlighted-amount">{{ buyIntrest.current | numberFormat }} ({{ buyDiff | numberFormat }})</p>
 
                 <div class="floating-tag">
-                    <div class="tag bg-light-red">
-                        - 10%
-                        <mat-icon class="market-down market-status">play_arrow</mat-icon>
+                    <div class="tag" [ngClass]="buyDiff > 0 ? 'bg-light-green': 'bg-light-red'">
+                        &nbsp;{{ buyIntrest.changePercent | number:'1.0-0' }}%
+                        <mat-icon class="market-status" [ngClass]="buyDiff > 0 ? 'market-up': 'market-down'">play_arrow</mat-icon>
                     </div>
                 </div>
 
                 <div class="bar">
 
-                    <p style="text-align: left;">{{ 1223133 | numberFormat }}</p>
-                    <p style="text-align: right;">{{ 1223133 | numberFormat }}</p>
+                    <p style="text-align: left;">{{ buyIntrest.min | numberFormat }}</p>
+                    <p style="text-align: right;">{{ buyIntrest.max | numberFormat }}</p>
         
-                    <div class="winning-bar">
-                        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                    <div [ngClass]="type === 'put' ? 'lossing-bar': 'winning-bar'">
+                        <mat-progress-bar mode="determinate" [value]="buyIntrest.progress"></mat-progress-bar>
                     </div>
             
                 </div>
@@ -54,25 +54,26 @@
 
             <div class="bs-container">
                 <h6 class="bs-title">Sell</h6>
-                <p class="highlighted-amount">{{ 1223133 | numberFormat }}</p>
+                <p class="highlighted-amount">{{ sellIntrest.current | numberFormat }} ({{ sellDiff | numberFormat }})</p>
 
                 <div class="floating-tag">
-                    <div class="tag bg-light-green">
-                        - 10%
-                        <mat-icon class="market-up market-status">play_arrow</mat-icon>
+                    <div class="tag" [ngClass]="sellDiff > 0 ? 'bg-light-green': 'bg-light-red'">
+                        &nbsp;{{ sellIntrest.changePercent | number:'1.0-0' }}%
+                        <mat-icon class="market-status" [ngClass]="sellDiff > 0 ? 'market-up': 'market-down'">play_arrow</mat-icon>
                     </div>
                 </div>
 
                 <div class="bar">
 
-                    <p style="text-align: left;">{{ 1223133 | numberFormat }}</p>
-                    <p style="text-align: right;">{{ 1223133 | numberFormat }}</p>
+                    <p style="text-align: left;">{{ sellIntrest.min | numberFormat }}</p>
+                    <p style="text-align: right;">{{ sellIntrest.max | numberFormat }}</p>
         
-                    <div class="winning-bar">
-                        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                    <div [ngClass]="type === 'call' ? 'lossing-bar': 'winning-bar'">
+                        <mat-progress-bar mode="determinate" [value]="sellIntrest.progress"></mat-progress-bar>
                     </div>
             
                 </div>
+
             </div>
         </div>
 
