@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\shared",
+    "\\app\\shared\\widget",
+    "\\app\\shared\\widget\\open-interest"
+  ],
+  "SelectedNode": "\\app\\shared\\widget\\open-interest\\open-interest.component.ts",
+  "PreviewInSolutionExplorer": false
+}

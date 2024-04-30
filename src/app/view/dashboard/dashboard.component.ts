@@ -49,9 +49,9 @@ export class DashboardComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.onResize();
     this.getSentiments();    
-    // this.runningInterval = setInterval(() => {
-    //   this.getSentiments(this.currentDate, this.interval);
-    // }, 15000);
+     this.runningInterval = setInterval(() => {
+       this.getSentiments(this.currentDate, this.interval);
+     }, 15000);
 
     this.cdRef.detectChanges();
   }
