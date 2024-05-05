@@ -16,7 +16,7 @@ export class PcChangeComponent implements AfterViewInit {
   /* Listing on window resize */
   @HostListener('window:resize', ['$event'])
   public onResize() {
-    const navbarHeight: number = 30;
+    const navbarHeight: number = 40;
     const spacing: number = 100;
     const availableHeight: number = window.innerHeight - (navbarHeight + spacing);
     this.availableHeight = availableHeight;

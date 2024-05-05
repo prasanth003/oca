@@ -18,4 +18,6 @@
         <pc-content [sentiment]="sentiment"></pc-content>
     </div>
 
+
+    <no-data *ngIf="!sentiments || sentiments.length <= 0" [height]="availableHeight" [message]="'No Records Found'"></no-data>
 </div>

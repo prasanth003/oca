@@ -8,12 +8,20 @@ import { MarketSentimentComponent } from './market-sentiment/market-sentiment.co
 import { NgxEchartsModule } from 'ngx-echarts';
 import { OpenInterestComponent } from './open-interest/open-interest.component';
 import { SharedModule } from '../shared.module';
+import { SentimentStrikePriceComponent } from './sentiment-strike-price/sentiment-strike-price.component';
+import { StrikePriceTableComponent } from './strike-price-table/strike-price-table.component';
+import { TrendByStrikeComponent } from './trend-by-strike/trend-by-strike.component';
+import { BankRatioComponent } from './bank-ratio/bank-ratio.component';
 
 const components = [
   CurrentTrendComponent,
   PcChangeComponent,
   MarketSentimentComponent,
-  OpenInterestComponent
+  OpenInterestComponent,
+  SentimentStrikePriceComponent,
+  StrikePriceTableComponent,
+  TrendByStrikeComponent,
+  BankRatioComponent
 ]
 
 @NgModule({

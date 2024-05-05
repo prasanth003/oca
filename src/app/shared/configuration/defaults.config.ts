@@ -1,4 +1,5 @@
 export enum Defaults {
     Theme = 'light',
-    Interval = 1
+    Interval = 1,
+    Index = 'NIFTY BANK'
 }

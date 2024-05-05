@@ -1,0 +1,53 @@
+
+<div class="daashboard-layout" [style.height]="availableHeight + 'px'">
+    
+    <div class="left-content">
+
+        <div class="mb-2">
+            <select-index></select-index>
+        </div>        
+        
+        <div class="mb-2">
+            <time-slider></time-slider>             
+        </div>
+
+        <div [hidden]="!sentiments || sentiments.length <= 0">
+<!-- 
+            <div class="mb-2">
+                <bear-and-bull [sentiment]="sentiments" [newRecord]="newSentiment"></bear-and-bull>
+            </div> -->
+            
+            <current-trend [trendData]="sentimentTrend" [newRecord]="newTrendData"></current-trend>
+
+            <div class="summary">
+            
+                <div class="row g-2">
+                    
+                    <div class="col-md-4">
+                        <market-sentiment [sentiments]="sentimentForGauge"></market-sentiment>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <open-interest [type]="'put'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <open-interest [type]="'call'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+                    </div>
+    
+                </div>
+    
+            </div>
+        
+        </div> 
+        
+  
+        <no-data [hidden]="sentiments && sentiments.length > 0" [height]="availableHeight - 120" [message]="'No Records Found'"></no-data>
+
+    </div>
+
+    <div class="right-content">
+        <pc-change [sentiments]="sentiments" [newRecord]="newSentiment"></pc-change>
+    </div>
+
+</div>

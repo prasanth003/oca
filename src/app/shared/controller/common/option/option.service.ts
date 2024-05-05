@@ -29,4 +29,8 @@ export class OptionService {
     this.store.dispatch(new Options({ ...this.options, range: range }));
   }
 
+  public updateIndex(index: string): void {
+    this.store.dispatch(new Options({ ...this.options, index: index }));
+  }
+
 }

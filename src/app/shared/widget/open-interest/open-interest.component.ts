@@ -75,12 +75,21 @@ export class OpenInterestComponent implements OnChanges {
   }
 
   private getMinMaxByKey(key: string, sentiments: iSentimentData[]): iMinMax {    
-    let smallest: number = sentiments[0][key];
-    let largest: number = sentiments[0][key];
-    let current: number = sentiments[sentiments.length - 1][key];
 
-    for (let i = 1; i < sentiments.length; i++) {
-      const currentValue = sentiments[i][key];
+    let keyValues: number[] = sentiments.map((value: iSentimentData) => value[key]);
+
+    let differenceValue: number[] = [];
+
+    for (let i = 1; i < keyValues.length; i++) {
+      differenceValue.push(keyValues[i] - keyValues[0]);
+    } 
+
+    let current: number = differenceValue[differenceValue.length - 1];
+    let smallest: number = differenceValue[0];
+    let largest: number = differenceValue[0];
+
+    for (let i = 1; i < differenceValue.length; i++) {
+      const currentValue = differenceValue[i];
       if (currentValue < smallest) {
         smallest = currentValue;
       }
@@ -91,8 +100,8 @@ export class OpenInterestComponent implements OnChanges {
 
     let progress: number = ((current - smallest) / (largest - smallest)) * 100;
 
-    let changePercent: number = (sentiments[0][key] / sentiments[sentiments.length - 1][key]) * 100;
+    let changePercent: number = (differenceValue[0] / differenceValue[differenceValue.length - 1]) * 100;
 
-    return { min: smallest, max: largest, current, progress, changePercent};
+    return { min: smallest, max: largest, current, progress, changePercent: progress};
   }
 }

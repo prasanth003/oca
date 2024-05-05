@@ -1,0 +1,61 @@
+<div class="summary-card">
+    
+    <div class="strike-details">
+        <h4 class="strike-price">{{ strikeDetails?.price }}</h4>
+        <p class="diff">Diff: -1,44,232</p>
+    </div>
+
+    <div class="option-details">
+
+        <div class="options mb-2" *ngIf="strikeDetails?.callOption as option">
+            
+            <div class="trade-details">
+                
+                <h6 class="title">Sellers</h6>
+
+                <div class="progress-details">
+                    <p class="count">{{ option?.tradedQty?.current }}</p>
+                    <progress-bar [quantity]="option?.tradedQty"></progress-bar>
+                </div>
+
+                <div class="description">
+                    LTP: {{ option.lastPrice }} <div class="break"></div>  INV: {{ option.intrinsicValue }}  <div class="break"></div>  ENV: {{ option.extrinsicValue }}
+                </div>
+
+            </div>
+
+            <div class="iv-details">
+                <gauge-chart [quantity]="option?.iv"></gauge-chart>
+            </div>
+            
+
+        </div>
+
+        <div class="options" *ngIf="strikeDetails?.putOption as option">
+            
+            <div class="trade-details">
+                
+                <h6 class="title">Buyers</h6>
+
+                <div class="progress-details">
+                    <p class="count">{{ option?.tradedQty?.current }}</p>
+                    <progress-bar [quantity]="option?.tradedQty"></progress-bar>
+                </div>
+
+                <div class="description">
+                    LTP: {{ option.lastPrice }} <div class="break"></div>  INV: {{ option.intrinsicValue }}  <div class="break"></div>  ENV: {{ option.extrinsicValue }}
+                </div>
+
+            </div>
+
+            <div class="iv-details">
+                <gauge-chart [quantity]="option?.iv"></gauge-chart>
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+
+</div>

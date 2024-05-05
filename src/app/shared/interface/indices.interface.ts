@@ -3,4 +3,6 @@ export interface iIndices {
     icon: string;
     currentPrice: number;
     percentageChange: number;
+    active: boolean;
+    value: string;
 }

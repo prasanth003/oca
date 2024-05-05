@@ -1,0 +1,38 @@
+@import '/src/assets/styles/variables.scss';
+
+.depth {
+
+    .operator-btn {
+        margin: 0 10px;
+        border: 1px solid $light-bg;
+        background: transparent;
+        border-radius: 2px;
+        color: $text-color;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .operator-btn:first-child {
+        margin-left: 0px;
+    }
+
+    .operator-btn:last-child {
+        margin-right: 0px;
+    }
+
+    .depth-input {
+        background-color: $light-bg;
+        border: none;
+        width: 50px;
+        text-align: center;
+        color: $text-color;
+        font-family: $font-family-semibold;
+        font-size: 1rem;
+        padding: 5px;
+    }
+
+    .depth-input:focus, .depth-input:focus-visible {
+        border: none;
+        outline: none;
+    }
+}

@@ -1,0 +1,4 @@
+<div class="no-message-component" [style.height]="height ? (height + 'px') : 'auto'">
+    <img src="../../../../assets/img/no-data.svg" alt="no message">
+    <h6 class="message" *ngIf="message">{{ message }}</h6>
+</div>

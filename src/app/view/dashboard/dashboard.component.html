@@ -1,37 +1,132 @@
-<div class="daashboard-layout" [style.height]="availableHeight + 'px'">
+<mat-sidenav-container [style.height]="availableHeight + 'px'">
+
+    <mat-sidenav-content class="left-content">
+
+        <div class="mb-2 index">
+            <select-index></select-index>
+        </div>
+
+        <div class="daashboard-layout" [style.height]="availableHeight + 'px'">
+
+            <div class="d-left-content">
+
+                <div class="mb-2">
+                    <time-slider></time-slider>
+                </div>
+
+                <div [hidden]="!sentimentTrend || sentimentTrend.length <= 0">
+                    <current-trend [height]="availableHeight - 110" [trendData]="sentimentTrend" [newRecord]="newTrendData"></current-trend>
+                </div>
+
+                <no-data [hidden]="sentimentTrend && sentimentTrend.length > 0" [height]="availableHeight - 120"
+                    [message]="'No Records Found'"></no-data>
+
+            </div>
+
+            <div class="d-right-content">
+
+                <div class="d-flex align-items-center mb-2">
+                    <div class="">
+                    </div>
+                    <div class="ms-auto" style="position: relative; top: -3px;">
+                        <depth-selector [defaultDepth]="depth" (updateDepth)="onDepthChange($event)"></depth-selector>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <strike-price-table 
+                        [height]="availableHeight - 90"
+                        [prices]="strikePrice"
+                        (showStrikeDetails)="openStrikePriceDetails($event)"
+                    ></strike-price-table>
+                </div>
+
+                
+            </div>
+
+        </div>
+
+        <button class="fab-open-button" (click)="closeSideBar()">
+            <i class="fas fa-angle-left"></i>
+        </button>
+
+    </mat-sidenav-content>
+
+    <mat-sidenav #sidenav (closed)="sidebarOpened = false;" [mode]="sidebarMode" [opened]="sidebarOpened"
+        [style.width]="sidebarWidth + 'px'" position="end">
+
+        <button class="fab-close-button" (click)="closeSideBar()">
+            <i class="fas fa-angle-right"></i>
+        </button>
+
+
+        <div class="right-content">
+
+            <div *ngIf="adRatio" class="mb-2">
+                <bank-ratio [adRatio]="adRatio"></bank-ratio>
+            </div>
+
+            <div class="mb-3">
+                <market-sentiment [sentiments]="sentimentForGauge"></market-sentiment>
+            </div>
+
+            <div class="mb-2">
+                <open-interest [type]="'put'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+            </div>
+            
+            <div class="mb-2">
+                <open-interest [type]="'call'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+            </div>
+
+            <pc-change [sentiments]="sentiments" [newRecord]="newSentiment"></pc-change>
+
+        </div>
+        
+    </mat-sidenav>
+
+</mat-sidenav-container>
+
+
+
+<!-- <div class="daashboard-layout" [style.height]="availableHeight + 'px'">
+
 
     <div class="left-content">
         
         <div class="mb-2">
             <time-slider></time-slider>             
         </div>
+
+        <div [hidden]="!sentiments || sentiments.length <= 0">
+
+            <strike-price-table *ngIf="strikePrice && strikePrice.length > 0" [prices]="strikePrice"></strike-price-table>
+
+            <input [(ngModel)]="depth" type="number" max="20"> <button (click)="update()">Update Depth</button>
+
+            <current-trend [sentiments]="sentiments" [newRecord]="newSentiment"></current-trend>
+
+        </div> 
         
-        <current-trend [sentiments]="sentiments" [newRecord]="newSentiment"></current-trend>
-
-        <div class="summary">
-        
-            <div class="row g-2">
-                
-                <div class="col-md-4">
-                    <market-sentiment [sentiments]="sentiments" [newRecord]="newSentiment"></market-sentiment>
-                </div>
-
-                <div class="col-md-4">
-                    <open-interest [type]="'put'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
-                </div>
-
-                <div class="col-md-4">
-                    <open-interest [type]="'call'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
-                </div>
-
-            </div>
-
-        </div>
+  
+        <no-data [hidden]="sentiments && sentiments.length > 0" [height]="availableHeight - 120" [message]="'No Records Found'"></no-data>
 
     </div>
 
     <div class="right-content">
+        
+        <div class="mb-2">
+            <open-interest [type]="'put'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+        </div>
+        
+        <div class="mb-2">
+            <open-interest [type]="'call'" [sentiments]="sentiments" [newRecord]="newSentiment"></open-interest>
+        </div>
+
+        <div class="mb-3">
+            <market-sentiment [sentiments]="sentiments" [newRecord]="newSentiment"></market-sentiment>
+        </div>
+        
         <pc-change [sentiments]="sentiments" [newRecord]="newSentiment"></pc-change>
     </div>
 
-</div>
+</div> -->

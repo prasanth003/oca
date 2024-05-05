@@ -10,7 +10,7 @@
             <mat-icon> pie_chart</mat-icon>
         </button> -->
 
-        <div [hidden]="gauge">
+        <!-- <div [hidden]="gauge">
             <div class="sentiment-section mb-2">
                 <div class="border up"></div>
                 
@@ -46,7 +46,7 @@
                 </div>
     
             </div>
-        </div>
+        </div> -->
 
         <div [hidden]="!gauge">
             <div 
@@ -58,8 +58,6 @@
                 (chartInit)="onChartInit($event)"
           ></div>
         </div>
-
-        <!-- <p class="description">Based on 80% interest on buy side.</p> -->
 
     </mat-card-content>
 </mat-card>

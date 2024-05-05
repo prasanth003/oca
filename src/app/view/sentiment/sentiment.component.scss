@@ -1,0 +1,50 @@
+@import '/src/assets/styles/variables.scss';
+
+
+.daashboard-layout {
+    display: flex;
+    width: 100%;
+
+    .left-content {
+        width: 75%;
+        background-color: $body-bg;
+        padding: 20px;
+        overflow-y: auto;
+
+        .summary {
+            margin: 15px 0px;
+        }
+    }
+
+
+    .right-content {
+        width: 25%;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: $light-bg;
+    }
+
+}
+
+
+@media only screen and (max-width: 1400px) {
+
+    .left-content {
+        width: 70% !important; 
+    }
+    
+    .right-content {
+        width: 30% !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .left-content {
+        width: 60% !important; 
+    }
+    
+    .right-content {
+        width: 40% !important;
+    }
+}

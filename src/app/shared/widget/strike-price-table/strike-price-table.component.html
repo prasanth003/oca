@@ -1,0 +1,45 @@
+<div class="scroller" [style.height]="height + 'px'">
+    <table class="table w-100">
+        <thead>
+            <tr>
+                <td>Strike Price</td>
+                <td>Sentiment</td>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let price of prices.slice().reverse()">
+                <tr [id]="'i' + price.strikePrice" [ngClass]="price.isCurrentPrice ? 'highlight-row': ''" (click)="openDetails(price.strikePrice)">
+                    <td class="stike-price"> 
+                        {{ price?.strikePrice | numberFormat }}
+                    </td>
+                    <td>
+                        <div class="track-details">
+                            <span class="price">{{ price?.sentiment?.current | numberFormat }}</span>
+                            <span class="progress-percentage" *ngIf="displayPercentage">
+                                {{ checkInverse(price?.sentiment)  ? '-' : '' }}{{ getProgress(price?.sentiment)?.progress | number:'1.0-0' }}%
+                            </span>
+                            <div 
+                                [ngClass]="{ 
+                                    'lossing-bar': price?.sentiment?.current <= 0, 
+                                    'winning-bar' : price?.sentiment?.current > 0,
+                                    'inverse': checkInverse(price?.sentiment) 
+                                }">
+                                <mat-progress-bar mode="determinate" [value]="getProgress(price?.sentiment)?.progress"></mat-progress-bar>
+                            </div>
+                        </div> 
+                        <!-- <br>
+                        <p>Call B: <b>{{ price.callBuy | numberFormat }}</b>, S: <b>{{ price.callSell | numberFormat }}</b>, IV: <b>{{ price.callIV | numberFormat }}</b></p>
+                        <p>Put B: <b>{{ price.putBuy | numberFormat }}</b>, S: <b>{{ price.putSell | numberFormat }}</b>, IV: <b>{{ price.putIV | numberFormat }}</b></p>
+                        <p>CE OI: <b>{{ price.callOI | numberFormat}}</b>, PE OI: <b>{{ price.putOI | numberFormat }}</b></p> -->
+                        <!-- <p> </p>
+                        <p>Call IV: {{ price.callIV }} </p>
+                        <p>Put Buy: {{ price.putBuy }} </p>
+                        <p>Put Sell: {{ price.putSell }} </p>
+                        <p>Put IV: {{ price.putIV }} </p> -->
+                    </td>
+                </tr>
+            </ng-container>
+            
+        </tbody>
+    </table>
+</div>

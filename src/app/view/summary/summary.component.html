@@ -1,3 +1,11 @@
 <div class="summary-layout">
-    
+
+  <!-- <select-index></select-index> -->
+
+  <div class="mb-2">
+    <time-slider></time-slider>
+  </div>
+
+  <summary-card *ngFor="let strikePrice of (summary$ | async)?.strikePrice" [strikeDetails]="strikePrice"></summary-card>
+
 </div>

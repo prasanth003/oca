@@ -7,6 +7,11 @@ export const Menu: iMenu[] = [
         icon: 'fa-arrow-trend-up'
     },
     {
+        menu: 'BS',
+        path: '/sentiment/trend',
+        icon: 'fa-magnifying-glass-chart'
+    },
+    {
         menu: 'Summary',
         path: '/summary',
         icon: 'fa-hard-drive'

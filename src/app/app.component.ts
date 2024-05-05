@@ -31,6 +31,11 @@ export class AppComponent implements AfterViewInit {
     if (range) {
       this.options.updateRange(JSON.parse(range));
     }
+
+    const index: string = sessionStorage.getItem('index');
+    if (index) {
+      this.options.updateIndex(index);
+    }
   }
 
 }

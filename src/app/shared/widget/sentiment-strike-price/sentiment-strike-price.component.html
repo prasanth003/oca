@@ -1,0 +1,300 @@
+<h3 *ngIf="prices && prices.length > 0">{{prices[0].buy.current.call.closePrice | numberFormat}} - {{timeToTz(prices[0].buy.current.call.timestamp)}}</h3>
+<div class="scroller" [style.height]="550 + 'px'">
+
+  <table class="oca-table table table-bordered">
+    <thead>
+
+      <tr>
+        <td>Strike Price</td>
+
+        <!--<td>Call Buy</td>-->
+        <td>Sellers</td>
+        <!--<td>Put Buy</td>-->
+        <td>Buyers</td>
+        <!-- <td>Put OI</td>
+        <td>Call OI</td> -->
+        <td>Diff</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="prices && prices.length > 0">
+      <ng-container *ngFor="let price of prices.slice().reverse()">
+        <tr [id]="'i' + price.strikePrice" [ngClass]="price.isCurrentPrice ? 'highlight-row': ''">
+          <td class="stike-price" style="text-align: center;">
+            {{ price?.strikePrice | numberFormat }}
+          </td>
+
+          <!--<td [ngClass]="{
+      'bg-light-green' : price.buy.current.put.value>
+    price.buy.current.call.value,
+    'bg-light-red' : price.buy.current.put.value < price.buy.current.call.value
+    }"
+    >
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.call.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ checkInverse(price.buy, 'call')  ? '-' : '' }}{{ getProgress(price.buy, 'call')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.call.value<= 0,
+                            'winning-bar' : price.buy.current.call.value > 0,
+                            'inverse': checkInverse(price.buy, 'call')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.buy, 'call')?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.call.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgressPercentage(price.buy.current.call.value,price.buy.recentMin.call.value,price.buy.recentMax.call.value)?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.call.value<= 0,
+                            'winning-bar' : price.buy.current.call.value > 0,
+                            'inverse': checkInverse(price.buy, 'call')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgressPercentage(price.buy.current.call.value,price.buy.recentMin.call.value,price.buy.recentMax.call.value)?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.call.ltp | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgress(price.buy, 'call', 'ltp')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.call.ltp - price.buy.max.call.ltp <= 0,
+                            'winning-bar' : price.buy.current.call.ltp - price.buy.max.call.ltp > 0,
+                            'inverse': price.buy.current.call.ltp - price.buy.max.call.ltp <= 0
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.buy, 'call', 'ltp')?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <p>
+      Time - Min: <b>{{ timeToTz(price.buy.min.call.timestamp) }}</b> , Max: <b>{{ timeToTz(price.buy.max.call.timestamp) }}</b> <br>
+      LTP - Min: <b>{{ price.buy.min.call.ltp }}</b>, Max: <b>{{ price.buy.max.call.ltp }}</b>
+    </p>
+  </td>-->
+
+          <td [ngClass]="{
+              'bg-light-green' : price.sell.current.put.value>
+            price.sell.current.call.value,
+            'bg-light-red' : price.sell.current.put.value < price.sell.current.call.value
+            }">
+            <div class="track-details">
+              <b> <span class="price">{{ price.sell.current.call.value | numberFormat }}</span></b>
+              <span class="progress-percentage">
+                {{ checkInverse(price.sell, 'call')  ? '-' : '' }}{{ getProgress(price.sell, 'call')?.progress | number:'1.0-0' }}%
+              </span>
+              <div [ngClass]="{
+                   'lossing-bar' : price.sell.current.call.value<= 0,
+                                    'winning-bar' : price.sell.current.call.value > 0,
+                                    'inverse': checkInverse(price.sell, 'call')
+                                }">
+                                <mat-progress-bar mode="determinate" [value]="getProgress(price.sell, 'call')?.progress"></mat-progress-bar>
+                            </div>
+            </div>
+            <!--<div class="track-details">
+      <span class="price">{{ price.sell.current.call.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgressPercentage(price.sell.current.call.value,price.sell.recentMin.call.value,price.sell.recentMax.call.value)?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.sell.current.call.value<= 0,
+                            'winning-bar' : price.sell.current.call.value > 0,
+                            'inverse': checkInverse(price.sell, 'call')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgressPercentage(price.sell.current.call.value,price.sell.recentMin.call.value,price.sell.recentMax.call.value)?.progress"></mat-progress-bar>
+                    </div>
+    </div>-->
+            <!--<div class="track-details">
+      <span class="price">{{ price.sell.current.call.ltp | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgress(price.sell, 'call', 'ltp')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.sell.max.call.ltp - price.sell.current.call.ltp <= 0 ,
+                            'winning-bar' : price.sell.max.call.ltp - price.sell.current.call.ltp > 0,
+                            'inverse': price.sell.max.call.ltp - price.sell.current.call.ltp <= 0
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.sell, 'call', 'ltp')?.progress"></mat-progress-bar>
+                    </div>
+    </div>-->
+          <p>
+
+            Time - Max: <b>{{ timeToTz(price.sell.max.call.timestamp) }}</b>, Recent Max: <b>{{ timeToTz(price.sell.recentMax.call.timestamp) }}</b> <br>
+            <b>LTP -  {{ price.sell.current.call.ltp }}</b>, , Max Price - <b>{{price.sell.max.call.value}}</b>, Diff : <b>{{price.sell.current.call.value - price.sell.max.call.value | numberFormat }}</b>
+            <br /> <b>IV : {{price.sell.current.call.iv}}</b>
+            | <b>INV : {{ prices[0].buy.current.call.closePrice -price?.strikePrice > 0 ?(prices[0].buy.current.call.closePrice -price?.strikePrice | numberFormat): 0 }}</b>
+            | <b>ENV : {{ prices[0].buy.current.call.closePrice -price?.strikePrice > 0 ?((price.sell.current.call.ltp)-(prices[0].buy.current.call.closePrice -price?.strikePrice) | numberFormat): price.sell.current.call.ltp }}</b>
+          </p>
+          </td>
+          <!--<td [ngClass]="{
+      'bg-light-green' : price.buy.current.put.value>
+    price.buy.current.call.value ,
+    'bg-light-red' : price.buy.current.put.value < price.buy.current.call.value
+    }">
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.put.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ checkInverse(price.buy, 'put')  ? '-' : '' }}{{ getProgress(price.buy, 'put')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.put.value<= 0,
+                            'winning-bar' : price.buy.current.put.value > 0,
+                            'inverse': checkInverse(price.buy, 'put')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.buy, 'put')?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.put.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgressPercentage(price.buy.current.put.value,price.buy.recentMin.put.value,price.buy.recentMax.put.value)?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.call.value<= 0,
+                            'winning-bar' : price.buy.current.put.value > 0,
+                            'inverse': checkInverse(price.buy, 'put')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgressPercentage(price.buy.current.put.value,price.buy.recentMin.put.value,price.buy.recentMax.put.value)?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <div class="track-details">
+      <span class="price">{{ price.buy.current.put.ltp | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgress(price.buy, 'put', 'ltp')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.buy.current.put.ltp - price.buy.max.put.ltp <= 0,
+                            'winning-bar' : price.buy.current.put.ltp - price.buy.max.put.ltp > 0,
+                            'inverse': price.buy.current.put.ltp - price.buy.max.put.ltp <= 0
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.buy, 'put', 'ltp')?.progress"></mat-progress-bar>
+                    </div>
+    </div>
+    <p>
+      Time - Min: <b>{{ timeToTz(price.buy.min.put.timestamp) }}</b> , Max: <b>{{ timeToTz(price.buy.max.put.timestamp) }}</b>, <br>
+      LTP - Min: <b>{{ price.buy.min.put.ltp }}</b>, Max: <b>{{ price.buy.max.put.ltp }}</b>
+    </p>
+  </td>-->
+          <td [ngClass]="{
+              'bg-light-green' : price.sell.current.put.value>
+            price.sell.current.call.value ,
+            'bg-light-red' : price.sell.current.put.value < price.sell.current.call.value
+            }">
+            <div class="track-details">
+              <b>
+                <span class="price">{{ price.sell.current.put.value | numberFormat }}</span>
+              </b>
+              <span class="progress-percentage">
+                {{ checkInverse(price.sell, 'put')  ? '-' : '' }}{{ getProgress(price.sell, 'put')?.progress | number:'1.0-0' }}%
+              </span>
+              <div [ngClass]="{
+                   'lossing-bar' : price.sell.current.put.value<= 0,
+                                    'winning-bar' : price.sell.current.put.value > 0,
+                                    'inverse': checkInverse(price.sell, 'put')
+                                }"
+                                >
+                                <mat-progress-bar mode="determinate" [value]="getProgress(price.sell, 'put')?.progress"></mat-progress-bar>
+                            </div>
+            </div>
+            <!--<div class="track-details">
+      <span class="price">{{ price.sell.current.put.value | numberFormat }}</span>
+      <span class="progress-percentage">
+        {{ getProgressPercentage(price.sell.current.put.value,price.sell.recentMin.put.value,price.sell.recentMax.put.value)?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.sell.current.put.value<= 0,
+                            'winning-bar' : price.sell.current.put.value > 0,
+                            'inverse': checkInverse(price.sell, 'put')
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgressPercentage(price.sell.current.put.value,price.sell.recentMin.put.value,price.sell.recentMax.put.value)?.progress"></mat-progress-bar>
+                    </div>
+    </div>-->
+            <!--<div class="track-details">
+    <span class="price">{{ price.sell.current.put.ltp | numberFormat }}</span>
+    <span class="progress-percentage">-->
+            <!-- {{ checkInverse(price.sell, 'put', 'ltp')  ? '-' : '' }} -->
+            <!--{{ getProgress(price.sell, 'put', 'ltp')?.progress | number:'1.0-0' }}%
+      </span>
+      <div [ngClass]="{
+           'lossing-bar' : price.sell.max.put.ltp - price.sell.current.put.ltp <= 0,
+                            'winning-bar' : price.sell.max.put.ltp - price.sell.current.put.ltp > 0,
+                            'inverse': price.sell.max.put.ltp - price.sell.current.put.ltp <= 0
+                        }">
+                        <mat-progress-bar mode="determinate" [value]="getProgress(price.sell, 'put', 'ltp')?.progress"></mat-progress-bar>
+                    </div>
+    </div>-->
+            <p>
+              Time - Max: <b>{{ timeToTz(price.sell.max.put.timestamp) }}</b> , Recent Max: <b>{{ timeToTz(price.sell.recentMax.put.timestamp) }}</b> <br>
+              <b> LTP - {{ price.sell.current.put.ltp }}</b>, Max Price - <b>{{price.sell.max.put.value}}</b>, Diff : <b>{{price.sell.current.put.value - price.sell.max.put.value | numberFormat }}</b>
+              <br /> <b>IV : {{price.sell.current.put.iv}}</b>
+             | <b>INV : {{price?.strikePrice - prices[0].buy.current.call.closePrice > 0 ? (price?.strikePrice - prices[0].buy.current.call.closePrice | numberFormat): 0}}</b>
+             | <b>ENV : {{price?.strikePrice - prices[0].buy.current.call.closePrice > 0 ? ((price.sell.current.put.ltp)-(price?.strikePrice - prices[0].buy.current.call.closePrice) | numberFormat): price.sell.current.put.ltp}}</b>
+
+            </p>
+          </td>
+          <!-- <td>
+      <div class="track-details">
+          <span class="price">{{ price.openInterest.current.put.value | numberFormat }}</span>
+          <span class="progress-percentage">
+              {{ checkInverse(price.openInterest, 'put')  ? '-' : '' }}{{ getProgress(price.openInterest, 'put')?.progress | number:'1.0-0' }}%
+          </span>
+          <div
+              [ngClass]="{
+                  'lossing-bar': price.openInterest.current.put.value<= 0,
+                  'winning-bar' : price.openInterest.current.put.value > 0,
+                  'inverse': checkInverse(price.openInterest, 'put')
+              }">
+              <mat-progress-bar mode="determinate" [value]="getProgress(price.openInterest, 'put')?.progress"></mat-progress-bar>
+          </div>
+      </div> <br>
+      <p>Min Time: {{ timeToTz(price.openInterest.min.put.timestamp) }} , Max Time: {{ timeToTz(price.openInterest.max.put.timestamp) }},
+          Min LTP: {{ price.buy.min.put.ltp }}, Max LTP: {{ price.buy.max.put.ltp }}
+      </p>
+  </td>
+  <td>
+      <div class="track-details">
+          <span class="price">{{ price.openInterest.current.call.value | numberFormat }}</span>
+          <span class="progress-percentage">
+              {{ checkInverse(price.openInterest, 'call')  ? '-' : '' }}{{ getProgress(price.openInterest, 'call')?.progress | number:'1.0-0' }}%
+          </span>
+          <div
+              [ngClass]="{
+                  'lossing-bar': price.openInterest.current.call.value<= 0,
+                  'winning-bar' : price.openInterest.current.call.value > 0,
+                  'inverse': checkInverse(price.openInterest, 'call')
+              }">
+              <mat-progress-bar mode="determinate" [value]="getProgress(price.openInterest, 'call')?.progress"></mat-progress-bar>
+          </div>
+      </div> <br>
+      <p>Min Time: {{ timeToTz(price.openInterest.min.call.timestamp) }} , Max Time: {{ timeToTz(price.openInterest.max.call.timestamp) }},
+          Min LTP: {{ price.buy.min.put.ltp }}, Max LTP: {{ price.buy.max.put.ltp }}
+      </p>
+  </td> -->
+          <td [ngClass]="{
+              'bg-light-green' : price.sell.current.put.value>
+            price.sell.current.call.value,
+            'bg-light-red' : price.sell.current.put.value < price.sell.current.call.value
+            }" class="stike-price" style="text-align: center;">
+            {{ price.sell.current.put.value-price.sell.current.call.value | numberFormat }}
+          </td>
+
+          <td [ngClass]="{
+              'bg-light-green' : price.sell.current.put.value>
+            price.sell.current.call.value,
+            'bg-light-red' : price.sell.current.put.value < price.sell.current.call.value
+            }" class="stike-price" style="text-align: center;">
+            {{ price.sell.current.call.iv - price.sell.current.put.iv | numberFormat }}
+          </td>
+          <!--<td [ngClass]="{
+              'bg-light-green' : price.sell.current.put.value>
+            price.sell.current.call.value,
+            'bg-light-red' : price.sell.current.put.value < price.sell.current.call.value
+            }" class="stike-price" style="text-align: center;">
+            {{ price.sell.current.call.iv - price.sell.current.put.iv | numberFormat }}
+          </td>-->
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

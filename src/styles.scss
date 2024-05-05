@@ -97,8 +97,9 @@ body {
 }
 
 .title {
-  font-size: 16px;
+  font-size: 1rem;
   font-family: $font-family-bold;
+  color: $text-color-light;
 }
 
 .bg-green {
@@ -112,16 +113,13 @@ body {
 }
 
 .bg-light-red {
-  background-color: $light-red;
+  background: $light-red;
 }
 
 .bg-light-green {
-  background-color: $light-green;
+  background: $light-green;
 }
 
-.bg-light-red {
-  background-color: $light-red;
-}
 
 .bg-light-green-2 {
   background-color: $light-green-2;

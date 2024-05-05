@@ -7,6 +7,7 @@ export interface iOptions {
     currentDate: Date;
     interval: number;
     range: Date[];
+    index: string;
 }
 
 export interface iTheme {

@@ -1,0 +1,8 @@
+<div 
+    #echart 
+    echarts 
+    [options]="chartOptions" 
+    [autoResize]="true" 
+    [style.height]="chartHeight + 'px'"
+    (chartInit)="onChartInit($event)"
+></div>

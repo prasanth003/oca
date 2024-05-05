@@ -1,0 +1,37 @@
+@import '/src/assets/styles/variables.scss';
+@import '/src/styles.scss';
+
+.oca-table {
+    width: 100%;
+    border: 1px solid $border-color;
+
+    thead {
+        background-color: $light-bg;
+        
+        tr {
+            border-bottom: 1px solid $border-color;
+        }
+
+        td {
+          padding: 10px;  
+          color: $text-color-light;
+          font-size: 0.75rem;
+          font-family: $font-family-semibold;
+          letter-spacing: 0.5px;
+        }
+    }
+
+    tbody {
+        background-color: $light-bg-2;
+        
+        tr {
+            border-bottom: 1px solid $border-color;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+    }
+}
+

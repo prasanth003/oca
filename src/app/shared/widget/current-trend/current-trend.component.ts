@@ -2,8 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, 
 import { Store } from '@ngrx/store';
 import { createChart, IChartApi, ISeriesApi } from 'lightweight-charts';
 import { Defaults } from '../../configuration/defaults.config';
-import { iSentimentData } from '../../interface/sentimenet.interface';
 import { iState, iTheme } from '../../interface/state.interface';
+import { iSentiment } from '../../interface/strike-price.interface';
 
 @Component({
   selector: 'current-trend',
@@ -13,14 +13,15 @@ import { iState, iTheme } from '../../interface/state.interface';
 export class CurrentTrendComponent implements AfterViewInit, OnChanges {
 
   public chart: IChartApi;
-  private chartHeight: number = 350;
+  private chartHeight: number = 450;
   private chartData: { value: number, time: number }[] = [];
   public areaSeries: ISeriesApi<'Baseline'>;
 
   @ViewChild('currentTrend') trendElement: ElementRef;
-  
-  @Input() sentiments: iSentimentData[] = [];
-  @Input() newRecord: iSentimentData;
+
+  @Input() height: number;
+  @Input() trendData: iSentiment[] = [];
+  @Input() newRecord: iSentiment;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -48,26 +49,44 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
   public onResize() {
     if (!this.chart || !this.trendElement || !this.trendElement.nativeElement) return null;
     const element: HTMLElement = this.trendElement.nativeElement;
+
+    if (element.offsetWidth < 400) {
+      this.chart.applyOptions({
+        rightPriceScale: {
+          visible: false
+        }
+      });
+    } else {
+      this.chart.applyOptions({
+        rightPriceScale: {
+          visible: true
+        }
+      });
+    }
+
     this.chart.resize(element.offsetWidth, this.chartHeight, true);
   }
 
   public ngOnChanges(changes: SimpleChanges): void { 
     
-    if (changes && changes['sentiments'] && changes['sentiments'].currentValue) {
-      this.chartData = this.sentiments.map((value) => { return { value: value.sentiment, time: this.timeToTz(value.timestamp) } });
+    if (changes && changes['trendData'] && changes['trendData'].currentValue) {
+      this.chartData = this.trendData.map((value) => { return { value: value.current, time: this.timeToTz(value.timestamp) } });
       this.areaSeries?.setData(this.chartData as any);
     }
 
     if (changes && changes['newRecord'] && changes['newRecord'].currentValue) {
       const data: any = {
-        value: this.newRecord.sentiment,
+        value: this.newRecord.current,
         time: this.timeToTz(this.newRecord.timestamp)
       }
       this.chartData.push(data);
       this.areaSeries?.update(data as any);
     }
 
-    this.onResize();
+    if (changes && changes['height'] && changes['height'].currentValue && this.height > 0) {
+      this.chartHeight = this.height;
+      this.onResize();
+    }
   }
 
   public ngAfterViewInit(): void {
@@ -141,6 +160,11 @@ export class CurrentTrendComponent implements AfterViewInit, OnChanges {
 
     this.chart.timeScale().fitContent();
     this.areaSeries = this.chart.addBaselineSeries();
+
+    setInterval(() => {
+      this.onResize();
+    }, 1000);
+    
     this.cdRef.detectChanges();
   }
 

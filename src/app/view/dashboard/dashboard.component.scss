@@ -1,11 +1,62 @@
 @import '/src/assets/styles/variables.scss';
 
+.left-content {
+    background-color: $body-bg;
+    overflow-y: auto;
+
+    .index {
+        padding: 15px 20px;
+    }
+
+
+    .fab-open-button {
+        position: fixed;
+        top: 90px;
+        right: -10px;
+        z-index: 1;
+        background-color: $primary-color;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+        border: none;
+        padding: 12px 5px;
+        width: 33px;
+        color: $text-color-white;
+    }
+}
+
+.mat-sidenav {
+    border-left: 1px solid $light-bg;
+
+    .fab-close-button {
+        position: absolute;
+        top: 20px;
+        left: -11px;
+        z-index: 1;
+        background-color: var(--primary-color);
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border: none;
+        padding: 12px 5px;
+        width: 33px;
+        color: $text-color-white;
+    }
+}
+
+.right-content {
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    background-color: $body-bg;
+}
+
+
+
 .daashboard-layout {
     display: flex;
     width: 100%;
 
-    .left-content {
-        width: 75%;
+    .d-left-content {
+        width: 70%;
         background-color: $body-bg;
         padding: 20px;
         overflow-y: auto;
@@ -16,34 +67,11 @@
     }
 
 
-    .right-content {
-        width: 25%;
+    .d-right-content {
+        width: 30%;
         padding: 20px;
         overflow-y: auto;
-        background-color: $light-bg;
+        background-color: $body-bg;
     }
 
-}
-
-
-@media only screen and (max-width: 1400px) {
-
-    .left-content {
-        width: 70% !important; 
-    }
-    
-    .right-content {
-        width: 30% !important;
-    }
-}
-
-@media only screen and (max-width: 1200px) {
-
-    .left-content {
-        width: 60% !important; 
-    }
-    
-    .right-content {
-        width: 40% !important;
-    }
 }

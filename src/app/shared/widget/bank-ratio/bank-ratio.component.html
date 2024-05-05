@@ -1,0 +1,11 @@
+<mat-card class="oca-card">
+    <mat-card-content class="section">
+        <div 
+            #echart 
+            echarts 
+            [options]="chartOption" 
+            [autoResize]="true" 
+            [style.height]="200 + 'px'"
+            (chartInit)="onChartInit($event)"></div>
+    </mat-card-content>
+</mat-card>

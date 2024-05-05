@@ -19,28 +19,13 @@ export class IntervalSelectorComponent {
       selected: true
     },
     {
+      displayValue: '3M',
+      value: 3,
+      selected: false
+    },
+    {
       displayValue: '5M',
       value: 5,
-      selected: false
-    },
-    {
-      displayValue: '15M',
-      value: 15,
-      selected: false
-    },
-    {
-      displayValue: '30M',
-      value: 30,
-      selected: false
-    },
-    {
-      displayValue: '45M',
-      value: 45,
-      selected: false
-    },
-    {
-      displayValue: '1H',
-      value: 60,
       selected: false
     }
   ];

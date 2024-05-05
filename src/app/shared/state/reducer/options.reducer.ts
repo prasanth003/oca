@@ -9,7 +9,8 @@ export function optionReducer(state = DefaultState.option, action: OptionAction)
                 ...state, 
                 currentDate: action.option.currentDate,
                 interval: action.option.interval,
-                range: action.option.range
+                range: action.option.range,
+                index: action.option.index
             };
         default:
             return state;

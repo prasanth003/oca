@@ -1,0 +1,40 @@
+@import '/src/assets/styles/variables.scss';
+
+.track-bar {
+    margin: 0px 5px;
+}
+
+
+::ng-deep {
+    
+    $height: 6px;
+
+    .inverse {
+        .mdc-linear-progress {
+            transform: rotate(180deg);
+        }
+    }
+
+    .mdc-linear-progress {
+        height: $height !important;
+        border-radius: 10px;
+    }
+
+    .mdc-linear-progress__buffer-bar {
+        background-color: $progress-bar !important;
+    }
+
+    .winning-bar {
+        .mdc-linear-progress__bar-inner {
+            border-color: $green-color;
+            border-top-width: $height !important;
+        }
+    }
+
+    .lossing-bar {
+        .mdc-linear-progress__bar-inner {
+            border-color: $red-color;
+            border-top-width: $height !important;
+        }
+    }
+}

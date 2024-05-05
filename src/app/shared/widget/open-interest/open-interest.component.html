@@ -6,7 +6,7 @@
       </mat-card-header>
     <mat-card-content class="section">
         
-        <h6 class="highlighted-amount">{{ overallIntrest.current | numberFormat }} ({{ oiDiff | numberFormat }})</h6>
+        <h6 class="highlighted-amount">{{ overallIntrest.current | numberFormat }}</h6>
 
         <div class="floating-tag">
             <div class="tag" [ngClass]="oiDiff > 0 ? 'bg-light-green': 'bg-light-red'">
@@ -30,7 +30,7 @@
         <div class="bs-content">
             <div class="bs-container">
                 <h6 class="bs-title">Buy</h6>
-                <p class="highlighted-amount">{{ buyIntrest.current | numberFormat }} ({{ buyDiff | numberFormat }})</p>
+                <p class="highlighted-amount">{{ buyIntrest.current | numberFormat }}</p>
 
                 <div class="floating-tag">
                     <div class="tag" [ngClass]="buyDiff > 0 ? 'bg-light-green': 'bg-light-red'">
@@ -54,7 +54,7 @@
 
             <div class="bs-container">
                 <h6 class="bs-title">Sell</h6>
-                <p class="highlighted-amount">{{ sellIntrest.current | numberFormat }} ({{ sellDiff | numberFormat }})</p>
+                <p class="highlighted-amount">{{ sellIntrest.current | numberFormat }}</p>
 
                 <div class="floating-tag">
                     <div class="tag" [ngClass]="sellDiff > 0 ? 'bg-light-green': 'bg-light-red'">

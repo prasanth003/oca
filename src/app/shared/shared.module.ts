@@ -9,10 +9,14 @@ import { IndicesComponent } from './components/indices/indices.component';
 import { TimeSliderComponent } from './components/time-slider/time-slider.component';
 import { IntervalSelectorComponent } from './components/interval-selector/interval-selector.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompactDatePipe } from './pipe/compact-date.pipe';
 import { NumberFormatPipe } from './pipe/number-format.pipe';
+import { NoDataComponent } from './components/no-data/no-data.component';
+import { DepthSelectorComponent } from './components/depth-selector/depth-selector.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { GaugeChartComponent } from './components/gauge-chart/gauge-chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 const component = [
   ChartComponent,
@@ -22,7 +26,11 @@ const component = [
   TimeSliderComponent,
   IntervalSelectorComponent,
   DatePickerComponent,
-  NavbarComponent
+  NavbarComponent,
+  NoDataComponent,
+  DepthSelectorComponent,
+  ProgressBarComponent,
+  GaugeChartComponent
 ]
 
 const pipe = [
@@ -38,7 +46,10 @@ const pipe = [
   imports: [
     CommonModule,
     LibraryModule,
-    RouterModule
+    RouterModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   exports: [
     ...component,
