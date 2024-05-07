@@ -8,6 +8,13 @@ import { iStrikePrice } from 'src/app/shared/interface/summary.interface';
 })
 export class SummaryCardComponent {
 
+  @Input() public atm: number = 0;
   @Input() public strikeDetails: iStrikePrice;
+
+  public panelOpenState: boolean = false;
+
+  public getDifference(): number {
+    return (this.strikeDetails?.putOption?.tradedQty?.current - this.strikeDetails?.callOption?.tradedQty?.current) ?? 0;
+  }
 
 }

@@ -17,14 +17,6 @@ export class SidebarComponent implements AfterViewInit {
   public activeClass: string = 'active';
   public menu: iMenu[] = Menu;
   
-  public navItems = [
-    { name: 'Market', icon: 'show_chart', link: '/dashboard' },
-    { name: 'Summary', icon: 'book', link: '/users' },
-    { name: 'Analysis', icon: 'compare', link: '/settings' },
-    { name: 'Profile', icon: 'mood', link: '/settings' },
-    { name: 'Settings', icon: 'settings', link: '/settings' }
-  ];
-
   constructor(
     private store: Store<iState>,
     private cdr: ChangeDetectorRef,

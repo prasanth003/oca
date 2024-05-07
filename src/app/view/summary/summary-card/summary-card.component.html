@@ -1,61 +1,88 @@
-<div class="summary-card">
+<div class="summary" [ngClass]="{
+    'active' : strikeDetails?.price === atm
+}">
     
-    <div class="strike-details">
-        <h4 class="strike-price">{{ strikeDetails?.price }}</h4>
-        <p class="diff">Diff: -1,44,232</p>
-    </div>
+    <div class="summary-card">
+        <div class="strike-details">
+            <h4 class="strike-price">{{ strikeDetails?.price | numberFormat }}</h4>
+            <p class="diff" *ngIf="getDifference() as diff">Diff: <span
+                    [ngClass]="diff < 0 ? 'text-red': 'text-green'">{{
+                    diff | numberFormat }}</span></p>
+        </div>
 
-    <div class="option-details">
+        <div class="option-details">
 
-        <div class="options mb-2" *ngIf="strikeDetails?.callOption as option">
-            
-            <div class="trade-details">
-                
-                <h6 class="title">Sellers</h6>
+            <div class="options" *ngIf="strikeDetails?.callOption as option">
 
-                <div class="progress-details">
-                    <p class="count">{{ option?.tradedQty?.current }}</p>
-                    <progress-bar [quantity]="option?.tradedQty"></progress-bar>
-                </div>
+                <div class="trade-details">
 
-                <div class="description">
-                    LTP: {{ option.lastPrice }} <div class="break"></div>  INV: {{ option.intrinsicValue }}  <div class="break"></div>  ENV: {{ option.extrinsicValue }}
+                    <h6 class="title">Sellers</h6>
+
+                    <div class="progress-details">
+                        <p class="count">{{ option?.tradedQty?.current | numberFormat }}</p>
+                        <progress-bar [quantity]="option?.tradedQty"></progress-bar>
+                    </div>
+
+                    <div class="description">
+                        LTP: {{ option.lastPrice | numberFormat }} <div class="break"></div> INV: {{
+                        option.intrinsicValue |
+                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }}
+                    </div>
+
                 </div>
 
             </div>
 
-            <div class="iv-details">
-                <gauge-chart [quantity]="option?.iv"></gauge-chart>
+            <div class="options" *ngIf="strikeDetails?.putOption as option">
+
+                <div class="trade-details">
+
+                    <h6 class="title">Buyers</h6>
+
+                    <div class="progress-details">
+                        <p class="count">{{ option?.tradedQty?.current | numberFormat }}</p>
+                        <progress-bar [quantity]="option?.tradedQty"></progress-bar>
+                    </div>
+
+                    <div class="description">
+                        LTP: {{ option.lastPrice | numberFormat }} <div class="break"></div> INV: {{
+                        option.intrinsicValue |
+                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }}
+                    </div>
+
+                </div>
+
             </div>
-            
 
         </div>
 
-        <div class="options" *ngIf="strikeDetails?.putOption as option">
-            
-            <div class="trade-details">
-                
-                <h6 class="title">Buyers</h6>
-
-                <div class="progress-details">
-                    <p class="count">{{ option?.tradedQty?.current }}</p>
-                    <progress-bar [quantity]="option?.tradedQty"></progress-bar>
-                </div>
-
-                <div class="description">
-                    LTP: {{ option.lastPrice }} <div class="break"></div>  INV: {{ option.intrinsicValue }}  <div class="break"></div>  ENV: {{ option.extrinsicValue }}
-                </div>
-
-            </div>
-
-            <div class="iv-details">
-                <gauge-chart [quantity]="option?.iv"></gauge-chart>
-            </div>
-            
-
-        </div>
-        
-
     </div>
 
+    <mat-accordion>
+        <mat-expansion-panel hideToggle class="expansion-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <button class="text-button" (click)="panelOpenState = true;">View IV</button>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="row g-2">
+                
+                <div class="col-md-6" *ngIf="strikeDetails?.callOption as option">
+                    <h6 class="title iv-title">Seller's IV</h6>
+                    <gauge-chart [quantity]="option?.iv"></gauge-chart>
+                </div>
+
+                <div class="col-md-6" *ngIf="strikeDetails?.putOption as option">
+                    <h6 class="title iv-title">Buyer's IV</h6>
+                    <gauge-chart [quantity]="option?.iv"></gauge-chart>
+                </div>
+                
+            </div>
+            
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
+
+
+

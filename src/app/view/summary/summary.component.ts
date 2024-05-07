@@ -21,7 +21,7 @@ export class SummaryComponent {
   public runningInterval: any;
   public depth: number = 5;
 
-  public summary$: Observable<iSummaryByStrikePrice> = new Observable();
+  public summary: iSummaryByStrikePrice;
 
   constructor(
     private sentimentData: SentimentsService,
@@ -40,14 +40,14 @@ export class SummaryComponent {
 
         this.runningInterval = setInterval(() => {
           this.getSummary(this.currentDate, this.interval, this.depth, this.index);
-        }, 15000);
+        }, 1500000000);
 
       }
     })
   }
 
-  private getSummary(date: Date = new Date(), interval: number = 1, depth: number = this.depth, index: string = Defaults.Index): void {
-    this.summary$ = this.sentimentData.getSummary(date, interval, 0, this.timeRange[0], this.timeRange[1], depth, index).pipe(
+  private async getSummary(date: Date = new Date(), interval: number = 1, depth: number = this.depth, index: string = Defaults.Index): Promise<void> {
+    this.summary = await lastValueFrom(this.sentimentData.getSummary(date, interval, 0, this.timeRange[0], this.timeRange[1], depth, index).pipe(
       map(data => {
         const callOptions = data.callOptions.reduce((acc, curr) => {
           acc[curr.strikePrice] = curr;
@@ -71,10 +71,11 @@ export class SummaryComponent {
           close: data.close,
           createdAt: data.createdAt,
           indexName: data.indexName,
-          strikePrice: strikePriceData
+          strikePrice: strikePriceData,
+          atmStrikePrice: data.atmStrikePrice
         };
       })
-    );
+    ));
   }
 
 }

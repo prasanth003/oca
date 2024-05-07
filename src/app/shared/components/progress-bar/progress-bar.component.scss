@@ -2,8 +2,16 @@
 
 .track-bar {
     margin: 0px 5px;
+    display: flex;
 }
 
+.percentage-change {
+    font-size: 12px;
+    width: 50px;
+    position: relative;
+    top: -7px;
+    left: 8px;
+}
 
 ::ng-deep {
     

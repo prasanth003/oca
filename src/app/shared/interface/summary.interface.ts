@@ -3,6 +3,7 @@ export interface iSummary {
     close: number;
     timestamp: string;
     createdAt: string;
+    atmStrikePrice: number;
     callOptions: iOptionSummary[];
     putOptions: iOptionSummary[];
 }
@@ -17,6 +18,7 @@ export interface iSummaryByStrikePrice {
     indexName: string;
     close: number;
     createdAt: string;
+    atmStrikePrice: number;
     strikePrice: iStrikePrice[];
 }
 

@@ -1,11 +1,20 @@
 <div class="summary-layout">
 
-  <!-- <select-index></select-index> -->
-
   <div class="mb-2">
     <time-slider></time-slider>
   </div>
 
-  <summary-card *ngFor="let strikePrice of (summary$ | async)?.strikePrice" [strikeDetails]="strikePrice"></summary-card>
+  <div *ngIf="summary?.strikePrice as strike; else noData">
+    <summary-card *ngFor="let strikePrice of strike" [strikeDetails]="strikePrice" [atm]="summary.atmStrikePrice"></summary-card>
+  </div>
+
+  <ng-template #noData>
+    
+    <div class="align-center">
+      <no-data></no-data>
+      <p>No records found</p>
+    </div>
+    
+  </ng-template>
 
 </div>

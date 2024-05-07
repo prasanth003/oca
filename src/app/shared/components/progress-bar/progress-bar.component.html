@@ -1,6 +1,12 @@
-<div *ngIf="getProgress(quantity) as progress" class="track-bar" [ngClass]="{
-    'lossing-bar' : progress <= 0,
-    'winning-bar' : progress > 0
+<div class="track-bar" [ngClass]="{
+    'lossing-bar' : quantity.percentageChange <= 0,
+    'winning-bar' : quantity.percentageChange > 0
 }">
-    <mat-progress-bar [value]="progress ?? 0"></mat-progress-bar>
+
+    <mat-progress-bar [value]="getProgress(quantity) ?? 0"></mat-progress-bar>
+    
+    <div class="percentage-change">
+        {{ quantity.percentageChange }}%
+    </div>
+
 </div>

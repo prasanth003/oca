@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChartComponent } from './components/chart/chart.component';
-import { BearBullChartComponent } from './components/bear-bull-chart/bear-bull-chart.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LibraryModule } from './library/library.module';
 import { RouterModule } from '@angular/router';
@@ -19,8 +17,6 @@ import { GaugeChartComponent } from './components/gauge-chart/gauge-chart.compon
 import { NgxEchartsModule } from 'ngx-echarts';
 
 const component = [
-  ChartComponent,
-  BearBullChartComponent,
   SidebarComponent,
   IndicesComponent,
   TimeSliderComponent,

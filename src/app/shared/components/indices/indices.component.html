@@ -1,4 +1,4 @@
-<div class="oca" *ngFor="let index of indices;let i = index">
+<!-- <div class="oca" *ngFor="let index of indices;let i = index">
     <mat-card class="index-card" [ngClass]="{'active': index.active }" (click)="onIndexSelect(i)">
         <mat-card-content class="symbol-section">
             <div class="symbol-icon">
@@ -8,12 +8,21 @@
             </div>
             <div class="symbol-content">
                 <h6 class="symbol-name">{{ index.symbol }}</h6>
-                <p class="current-value">{{ index.currentPrice | numberFormat }} INR 
+                <p class="current-value">{{ index.currentPrice | numberFormat }} INR
                     <span class="current-percentage" [ngClass]="index.percentageChange < 0 ? 'text-red': 'text-green'">
-                       {{ index.percentageChange > 0 ? '+': '' }}{{ index.percentageChange }}%
+                        {{ index.percentageChange > 0 ? '+': '' }}{{ index.percentageChange }}%
                     </span>
                 </p>
             </div>
         </mat-card-content>
     </mat-card>
-</div>
+</div> -->
+
+
+<mat-form-field appearance="outline">
+    <mat-select placeholder="Please select index" [(ngModel)]="index" (ngModelChange)="onIndexSelect($event)">
+        <mat-option *ngFor="let index of indices" [value]="index.value">
+            {{ index.symbol }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,89 +1,222 @@
 @import '/src/assets/styles/variables.scss';
 
-.summary-card {
+.summary {
     border: 2px solid $dark-transparent-bg;
     padding: 16px;
     border-radius: 12px;
     width: 100%;
-    display: flex;
     margin-bottom: 12px;
+
+    .summary-card {
     
-    .strike-details {
-        width: 25%;
-
-        .strike-price {
-            font-size: 17px;
-            font-family: $font-family-bold;
-            margin-bottom: 4px;
-            color: $text-color;
+        display: flex;
+        
+        .strike-details {
+            width: 15%;
+    
+            .strike-price {
+                font-size: 17px;
+                font-family: $font-family-bold;
+                margin-bottom: 4px;
+                color: $text-color;
+            }
+    
+            .diff {
+                font-size: 12px;
+                font-family: $font-family-medium;
+                margin: 0px;
+                color: $text-color;
+    
+                span {
+                    font-family: $font-family-bold;
+                }
+            }
         }
-
-        .diff {
-            font-size: 12px;
-            font-family: $font-family-regular;
-            margin: 0px;
-            color: $text-color;
+    
+        .option-details {
+            width: 100%;
+            display: flex;
+    
+            .options {
+                width: 50%;
+    
+                .trade-details {
+                  
+                    .title {
+                        font-size: 15px;
+                        font-family: $font-family-semibold;
+                        color: $text-color;
+                        margin: 4px;
+                    }
+            
+                    .progress-details {
+    
+                        margin: 10px 0px;
+    
+                        .count {
+                            font-size: 12px;
+                            font-family: $font-family-medium;
+                            color: $text-color;
+                            margin-bottom: 0px;
+                            margin-left: 5px;
+                        }
+                    }
+    
+                    .description {
+                        font-size: 12px;
+                        font-family: $font-family-regular;
+                        color: $text-color-light;
+                        display: flex;
+                        margin: 5px;
+    
+                        .break {
+                            background-color: $text-color-light;
+                            width: 2px;
+                            height: 10px;
+                            margin: 0px 10px;
+                            position: relative;
+                            top: 3px;
+                        }
+                    }
+                    
+                    
+                }
+    
+                .iv-details {
+                    width: 40%;
+                }
+    
+                &:first-child {
+                    padding-right: 20px;
+                }
+            }
+    
+        }
+    
+        &.active {
+            // background-color: $dark-transparent-bg;
+            border: 2px solid $primary-color;
+        }
+    
+        &.red-bg {
+            background-color: $red-color;
         }
     }
 
-    .option-details {
-        width: 85%;
+    .text-button {
+        font-size: 12px;
+        font-family: $font-family-medium;
+        color: $primary-color;
+        border: none;
+        margin: 0;
+        background-color: transparent;
+    }
 
-        .options {
-            display: flex;
+    .expansion-panel {
+        margin-top: -26px;
 
-            .trade-details {
-                width: 60%;
+        .iv-title {
+            font-size: 15px;
+            font-family: $font-family-semibold;
+            color: $text-color;
+            margin: 0px 4px;
+            display: none;
+        }
+    }
+}
 
-                .title {
-                    font-size: 15px;
-                    font-family: $font-family-semibold;
-                    color: $text-color;
-                    margin: 4px;
-                }
-        
-                .progress-details {
+::ng-deep {
+    .mat-expansion-panel-header {
+        padding: 0px !important;
+    }
 
-                    margin: 10px 0px;
+    .mat-expansion-panel-body {
+        padding: 10px !important;
+    }
+}
 
-                    .count {
-                        font-size: 12px;
-                        font-family: $font-family-medium;
-                        color: $text-color;
-                        margin-bottom: 0px;
-                        margin-left: 5px;
-                    }
-                }
 
-                .description {
-                    font-size: 12px;
-                    font-family: $font-family-regular;
-                    color: $text-color-light;
-                    display: flex;
-                    margin: 5px;
+// Mobile
+@media only screen and (max-width: 767px) {
 
-                    .break {
-                        background-color: $text-color-light;
-                        width: 2px;
-                        height: 10px;
-                        margin: 0px 10px;
-                        position: relative;
-                        top: 3px;
-                    }
-                }
-                
-                
+    .summary {
+        padding: 10px;
+
+        .summary-card {
+            flex-direction: column;
+    
+            .strike-details {
+                width: 100%;
+                margin-bottom: 12px;
             }
-
-            .iv-details {
-                width: 40%;
+    
+            .option-details {
+                flex-direction: column;
+    
+                .options {
+                    width: 100%;
+                    padding-right: 0px;
+                    margin-bottom: 12px;
+    
+                    .trade-details {
+                  
+                        .title, .description {
+                            margin-left: 0px;
+                        }
+    
+                        .progress-details {
+                            margin-left: -4px;
+                        }
+                    }
+    
+                    &:first-child {
+                        padding-right: 0px !important;
+                    }
+                }
             }
         }
 
-        // .divider {
-        //     background-color: $dark-transparent-bg;
-        //     height: 1px;
-        //     margin: 5px;
-        // }
+        .expansion-panel {
+            margin-top: -10px;
+            margin-left: -5px;
+
+            .iv-title { 
+                display: block;
+            }
+        }
+    }
+    
+  
+}
+
+// Tablet
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .summary-card {
+        .strike-details {
+            width: 20%;
+        }
+
+        .option-details {
+            .options {
+                width: 50%;
+                padding-right: 20px;
+            }
+        }
+    }
+}
+
+// Desktop
+@media only screen and (min-width: 1024px) {
+    .summary-card {
+        .strike-details {
+            width: 15%;
+        }
+
+        .option-details {
+            .options {
+                width: 50%;
+                padding-right: 20px;
+            }
+        }
     }
 }

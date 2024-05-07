@@ -47,6 +47,8 @@ export class IndicesComponent {
     }
   ];
 
+  public index: string = "NIFTY";
+
   constructor(
     private store: Store<iState>,
     private option: OptionService
@@ -54,17 +56,15 @@ export class IndicesComponent {
     this.store.select(state => state.option).subscribe({
       next: (option: iOptions) => {
         if (option && option.index) {
-          this.indices.forEach((icon: iIndices) => icon.active = false);
-          this.indices.find((icon: iIndices) => icon.value === option.index).active = true;
+          this.index = option.index;
           sessionStorage.setItem('index', option.index);
         }
       }
     })
   }
 
-  public onIndexSelect(id: number): void {
-    this.indices.forEach((icon: iIndices) => icon.active = false);
-    this.indices[id].active = true;
-    this.option.updateIndex(this.indices[id].value);
+  public onIndexSelect(index: string): void {
+    this.index = index;
+    this.option.updateIndex(this.index);
   }
 }
