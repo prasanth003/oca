@@ -52,3 +52,21 @@
 
     }
 }
+
+@media only screen and (max-width: 767px) { 
+    .navbar { 
+
+        .right-bar { 
+            
+            .profile-circle { 
+                display: none;
+            }
+
+            .profile-intersection {
+                display: none;
+            }
+            
+        }
+        
+    }
+}

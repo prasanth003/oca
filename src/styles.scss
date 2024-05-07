@@ -10,16 +10,8 @@
 
 @include mat.core();
 
-
-// @include mat.core();
-
 $oca-primary:  mat.define-palette($primary-palette, 900);
 $oca-accent: mat.define-palette($secondary-palette, 300);
-
-// $oca-light-theme: mat-light-theme($oca-primary, $oca-accent, $oca-warn);
-// $oca-dark-theme: mat-dark-theme($oca-primary, $oca-accent, $oca-warn);
-
-// @include angular-material-theme($oca-light-theme);
 
 $oca-font: mat.define-typography-config(
   $font-family: $font-family-regular
@@ -89,13 +81,6 @@ body {
   transition: all .5s;
 }
 
-
-.oca-card {
-  border: 1px solid $border-color !important;
-  box-shadow: none;
-  border-radius: 20px !important;
-}
-
 .title {
   font-size: 1rem;
   font-family: $font-family-bold;
@@ -127,22 +112,6 @@ body {
 
 .bg-light-red-2 {
   background-color: $light-red-2;
-}
-
-.market-up {
-  transform: rotate(270deg);
-  color: $green-color;
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-}
-
-.market-down {
-  transform: rotate(90deg);
-  color: $red-color;
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
 }
 
 .text-green {

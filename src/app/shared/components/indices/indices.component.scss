@@ -104,6 +104,8 @@
     .mat-mdc-select-value-text {
         font-size: 14px;
         font-family: $font-family-medium;
+        position: relative;
+        top: 0px;
     }
 
     .mat-mdc-option.mdc-list-item {
@@ -115,4 +117,28 @@
     .mat-mdc-option {
         min-height: 30px !important;
     }
+
+    @media only screen and (max-width: 767px) { 
+        .mat-mdc-select-value-text {
+            font-size: 12px;
+            font-family: $font-family-medium;
+            position: relative;
+            top: -2px;
+        }
+
+        .mat-mdc-text-field-wrapper {
+            padding: 2px 5px !important;
+            position: relative;
+            top: -13px;
+            color: $text-color-light;
+            width: 125px !important;
+        }
+
+        .mat-mdc-option.mdc-list-item {
+            font-size: 12px;
+            font-family: $font-family-medium;
+            padding: 4px;
+        }
+    }
 }
+

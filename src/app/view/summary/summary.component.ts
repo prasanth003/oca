@@ -40,7 +40,7 @@ export class SummaryComponent {
 
         this.runningInterval = setInterval(() => {
           this.getSummary(this.currentDate, this.interval, this.depth, this.index);
-        }, 1500000000);
+        }, 60000);
 
       }
     })
