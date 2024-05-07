@@ -15,6 +15,7 @@ export const DefaultState: iState = {
         currentDate: new Date(),
         interval: Defaults.Interval as any,
         range: [fromTime, toTime],
-        index: Defaults.Index as any
+        index: Defaults.Index as any,
+        depth: 3
     }
 }

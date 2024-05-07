@@ -92,15 +92,7 @@
             }
     
         }
-    
-        &.active {
-            // background-color: $dark-transparent-bg;
-            border: 2px solid $primary-color;
-        }
-    
-        &.red-bg {
-            background-color: $red-color;
-        }
+
     }
 
     .text-button {
@@ -122,6 +114,11 @@
             margin: 0px 4px;
             display: none;
         }
+    }
+
+    &.active {
+        background-color: $dark-transparent-bg;
+        border: 2px solid $primary-color;
     }
 }
 

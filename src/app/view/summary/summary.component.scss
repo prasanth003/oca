@@ -1,5 +1,17 @@
 @import '/src/assets/styles/variables.scss';
 
+.fixed-slider {
+    // // position: fixed;
+    // padding: 10px;
+    // width: 100vw;
+    // height: 70px;
+    // background-color: $body-bg;
+    // // position: fixed;
+    // // top: 63px;
+    // // z-index: 9999;
+    // border-bottom: 0.5px solid $dark-transparent-bg;
+}
+
 .summary-layout {
     padding: 10px 20px;
 }
@@ -20,6 +32,23 @@
         text-align: center;
         margin-top: 10px;
         font-size: 14px;
+    }
+}
+
+.description {
+    font-size: 14px;
+    font-family: $font-family-medium;
+    color: $text-color;
+    display: flex;
+    margin: 10px 0px;
+
+    .break {
+        background-color: $text-color-light;
+        width: 2px;
+        height: 10px;
+        margin: 0px 10px;
+        position: relative;
+        top: 5px;
     }
 }
 

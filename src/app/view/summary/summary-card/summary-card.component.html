@@ -1,6 +1,6 @@
 <div class="summary" [ngClass]="{
     'active' : strikeDetails?.price === atm
-}">
+}" [id]="strikeDetails?.price === atm ? 'atm': ''">
     
     <div class="summary-card">
         <div class="strike-details">
@@ -26,7 +26,7 @@
                     <div class="description">
                         LTP: {{ option.lastPrice | numberFormat }} <div class="break"></div> INV: {{
                         option.intrinsicValue |
-                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }}
+                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }}  <div class="break"></div> IV: {{ option?.iv?.current | numberFormat }}
                     </div>
 
                 </div>
@@ -47,7 +47,7 @@
                     <div class="description">
                         LTP: {{ option.lastPrice | numberFormat }} <div class="break"></div> INV: {{
                         option.intrinsicValue |
-                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }}
+                        numberFormat }} <div class="break"></div> ENV: {{ option.extrinsicValue | numberFormat }} <div class="break"></div> IV: {{ option?.iv?.current | numberFormat }}
                     </div>
 
                 </div>

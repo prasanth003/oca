@@ -1,7 +1,11 @@
 <div class="summary-layout">
 
-  <div class="mb-2">
+  <div class="fixed-slider">
     <time-slider></time-slider>
+  </div>
+
+  <div class="description">
+    Time: {{ summary?.createdAt }} <div class="break"></div> LTP: {{ summary?.close | numberFormat }}
   </div>
 
   <div *ngIf="summary?.strikePrice as strike; else noData">

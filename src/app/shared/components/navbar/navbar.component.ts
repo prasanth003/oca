@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { OptionService } from '../../controller/common/option/option.service';
-import { iState } from '../../interface/state.interface';
-import { Options } from '../../state/action/option.action';
 
 @Component({
   selector: 'oca-navbar',
@@ -14,6 +11,11 @@ export class NavbarComponent {
   @Input() height: number = 70;
 
   constructor(private option: OptionService) {}
+
+  public onDepthChange(depth: number): void {
+    this.option.updateDepth(depth);
+    sessionStorage.setItem('depth', depth.toString());
+  }
 
 
   public onDateChange(date: Date): void {

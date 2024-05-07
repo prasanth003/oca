@@ -8,6 +8,7 @@ export interface iOptions {
     interval: number;
     range: Date[];
     index: string;
+    depth: number;
 }
 
 export interface iTheme {

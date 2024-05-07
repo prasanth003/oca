@@ -1,11 +1,14 @@
 <div class="depth">
-    <button class="operator-btn" (click)="increment()">
-        <i class="fas fa-plus"></i>
+
+    <button class="operator-btn" (click)="decrement()">
+        <i class="fas fa-minus"></i>
     </button>
     
     <input readonly class="depth-input" max="20" [(ngModel)]="depth">
     
-    <button class="operator-btn" (click)="decrement()">
-        <i class="fas fa-minus"></i>
+    <button class="operator-btn" (click)="increment()">
+        <i class="fas fa-plus"></i>
     </button>
+
+    
 </div>

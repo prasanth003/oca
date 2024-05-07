@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DepthSelectorComponent {
 
-  @Input() defaultDepth: number = 7;
+  @Input() defaultDepth: number = 3;
 
   public depth: number = this.defaultDepth;
   public timeInterval: any;
@@ -16,8 +16,8 @@ export class DepthSelectorComponent {
   @Output() updateDepth: EventEmitter<number> = new EventEmitter<number>();
 
   public increment(): void {
-    if (this.depth >= 19) return null;
-    this.depth = this.depth + 2;
+    if (this.depth >= 7) return null;
+    this.depth = this.depth + 1;
 
     clearTimeout(this.timeInterval);
 
@@ -28,7 +28,7 @@ export class DepthSelectorComponent {
 
   public decrement(): void {
     if (this.depth <= 1) return null;
-    this.depth = this.depth - 2;
+    this.depth = this.depth - 1;
 
     clearTimeout(this.timeInterval);
     
@@ -36,4 +36,6 @@ export class DepthSelectorComponent {
       this.updateDepth.emit(this.depth);
     }, this.interval);
   }
+
+  
 }

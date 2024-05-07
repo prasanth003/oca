@@ -15,7 +15,11 @@
         <div class="intersection"></div>
 
         <div class="action-items">
-            <interval-selector (onChange)="onIntervalChange($event)"></interval-selector>
+            
+            <div class="depth-picker">
+                <depth-selector (updateDepth)="onDepthChange($event)"></depth-selector>
+            </div>
+            
         </div>
 
         <div class="intersection"></div>

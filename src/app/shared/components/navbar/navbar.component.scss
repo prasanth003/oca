@@ -7,6 +7,8 @@
     display: flex;
     border-bottom: 1px solid $border-color;
     transition: all .4s;
+    // position: fixed;
+    // z-index: 9999;
 
     .left-bar {
         justify-content: flex-start;
@@ -31,6 +33,11 @@
         .date-picker {
             position: relative;
             top: -5px;
+        }
+
+        .depth-picker {
+            position: relative;
+            top: -15px;
         }
 
         .profile-circle {

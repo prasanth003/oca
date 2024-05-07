@@ -33,4 +33,7 @@ export class OptionService {
     this.store.dispatch(new Options({ ...this.options, index: index }));
   }
 
+  public updateDepth(depth: number): void {
+    this.store.dispatch(new Options({ ...this.options, depth: depth }));
+  }
 }

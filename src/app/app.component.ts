@@ -10,8 +10,8 @@ import { ThemeService } from './shared/controller/common/theme/theme.service';
 export class AppComponent implements AfterViewInit {
   
   constructor(
-    private ts: ThemeService,
-    private options: OptionService
+    private options: OptionService,
+    private ts: ThemeService
   ) { }
 
   public ngAfterViewInit(): void {
@@ -35,6 +35,11 @@ export class AppComponent implements AfterViewInit {
     const index: string = sessionStorage.getItem('index');
     if (index) {
       this.options.updateIndex(index);
+    }
+
+    const depth: string = sessionStorage.getItem('depth');
+    if (depth) {
+      this.options.updateDepth(parseInt(depth));
     }
   }
 

@@ -19,7 +19,7 @@ export class SummaryComponent {
   private index: string = Defaults.Index;
 
   public runningInterval: any;
-  public depth: number = 5;
+  public depth: number = 3;
 
   public summary: iSummaryByStrikePrice;
 
@@ -33,17 +33,21 @@ export class SummaryComponent {
         this.interval = option.interval;
         this.timeRange = option.range;
         this.index = option.index;
+        this.depth = option.depth;
 
-        clearInterval(this.runningInterval);
-
-        this.getSummary(this.currentDate, this.interval, this.depth, this.index);
-
-        this.runningInterval = setInterval(() => {
-          this.getSummary(this.currentDate, this.interval, this.depth, this.index);
-        }, 60000);
-
+        this.load();
       }
     })
+  }
+
+  private load(): void {
+    clearInterval(this.runningInterval);
+
+    this.getSummary(this.currentDate, this.interval, this.depth, this.index);
+
+    this.runningInterval = setInterval(() => {
+      this.getSummary(this.currentDate, this.interval, this.depth, this.index);
+    }, 60000);
   }
 
   private async getSummary(date: Date = new Date(), interval: number = 1, depth: number = this.depth, index: string = Defaults.Index): Promise<void> {
@@ -67,6 +71,8 @@ export class SummaryComponent {
           putOption: putOptions[price]
         }));
 
+        strikePriceData.sort((a, b) => b.price - a.price);
+
         return {
           close: data.close,
           createdAt: data.createdAt,
@@ -76,7 +82,16 @@ export class SummaryComponent {
         };
       })
     ));
+
+    setTimeout(() => {
+      this.scrollToATM();
+    }, 1000);
   }
 
+  private scrollToATM(): void {
+    const element = document.getElementById('atm');
+    if (!element) return;
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
