@@ -16,12 +16,12 @@ export class SentimentsService {
     private dataService: DataService
   ) { }
 
-  public getSummary(date: Date, interval: number = 1, strikePrice: number = 0, fromDate?: Date, toDate?: Date, depth: number = 5, index: string = Defaults.Index): Observable<iSummary> {
+  public getSummary(date: Date, interval: number = 1, strikePrice: number = 0, fromDate?: Date, toDate?: Date, depth: number = 3, index: string = Defaults.Index): Observable<iSummary> {
     let filter: string = this.dataService.getFilter(date, fromDate, toDate, index);
 
     return this.crudService.read(
       environment.api + 'api/',
-      'OCA'  + filter + '&interval=' + interval + '&depth=' + depth
+      'OCA'  + filter + '&depth=' + depth
     );
   }
 
