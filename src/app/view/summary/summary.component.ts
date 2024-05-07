@@ -47,7 +47,7 @@ export class SummaryComponent {
 
     this.runningInterval = setInterval(() => {
       this.getSummary(this.currentDate, this.interval, this.depth, this.index);
-    }, 60000);
+    }, 15000);
   }
 
   private async getSummary(date: Date = new Date(), interval: number = 1, depth: number = this.depth, index: string = Defaults.Index): Promise<void> {
